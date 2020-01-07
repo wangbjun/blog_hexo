@@ -13,8 +13,8 @@ timezone: 'Asia/shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://wangbjun.github.io/blog
-root: /blog/
+url: https://wangbjun.github.io
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -99,7 +99,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:wangbjun/blog.git
+  repository: git@github.com:wangbjun/wangbjun.github.io.git
   branch: master
 
 jsonContent:
