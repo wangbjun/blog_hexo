@@ -4,9 +4,9 @@
 
 # Site
 title: JWang的博客
-subtitle: ''
-description: ''
-keywords:
+subtitle: '博客'
+description: 'PHP、Golang、Linux、Web开发'
+keywords: '技术、博客、PHP、Web开发、Golang、Linux、IT'
 author: Ben Jun
 language: zh-Hans
 timezone: 'Asia/shanghai'
