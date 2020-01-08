@@ -1,7 +1,7 @@
 ---
 title: PHP设计模式之单例模式
 date: 2016-11-25 18:00:00
-category: 设计模式
+category: 编程开发
 tags: 
     - PHP
 ---

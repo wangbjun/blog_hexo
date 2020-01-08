@@ -1,7 +1,7 @@
 ---
 title: 三、Symfony服务容器介绍
 date: 2017-02-05 18:10:00
-category: 设计模式
+category: 编程开发
 tags: 
     - PHP
     - 依赖注入

@@ -1,7 +1,7 @@
 ---
 title: PHP类的自动加载机制
 date: 2016-01-05 12:00:00
-category: PHP
+category: 编程开发
 tags: 
     - PHP
 ---

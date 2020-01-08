@@ -1,7 +1,7 @@
 ---
 title: PHP设计模式之过滤器模式
 date: 2017-01-02 09:00:00
-category: 设计模式
+category: 编程开发
 tags: 
     - PHP
 ---

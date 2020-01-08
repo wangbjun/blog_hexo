@@ -1,7 +1,7 @@
 ---
 title: 闲谈PHP面向对象编程
 date: 2016-03-09 15:00:00
-category: PHP
+category: 编程开发
 tags: 
     - PHP
     - OOP

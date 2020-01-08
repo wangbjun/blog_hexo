@@ -1,7 +1,7 @@
 ---
 title: 一、什么是依赖注入？
 date: 2017-02-01 19:10:00
-category: 设计模式
+category: 编程开发
 tags: 
     - PHP
     - 依赖注入

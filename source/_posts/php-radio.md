@@ -1,7 +1,7 @@
 ---
 title: PHP实现语音播报
 date: 2015-03-25 9:00:01
-category: PHP
+category: 编程开发
 tags: 
     - PHP
 ---

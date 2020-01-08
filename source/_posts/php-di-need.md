@@ -1,7 +1,7 @@
 ---
 title: 二、你需要一个依赖注入容器吗？
 date: 2017-02-04 13:10:08
-category: 设计模式
+category: 编程开发
 tags: 
     - PHP
     - 依赖注入
