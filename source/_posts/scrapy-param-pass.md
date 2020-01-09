@@ -1,7 +1,7 @@
 ---
 title: 关于Scrapy爬虫数据传递问题
 date: 2016-01-07 12:08:45
-tags: scrapy
+tags: Scrapy
 category: 编程开发
 ---
 

@@ -18,8 +18,6 @@ Go是强类型语言，有一个单独的字符串类型 string，如果熟悉Go
 
 我们打开IDE看一下，其实标准库里面的 strings 包已经有非常多的函数了，大约有20多个，包含常见的trim、index、replace、contain等功能，但是没有找到我们想要的？
 
-![](https://show-file.che001.com/fileserver/img?id=3031e623-10bd-11ea-85f9-0242ac144108)
-
 其实很简单，因为string本质上是切片，所以我们可以直接使用切片来分割字符串：
 ```go
 package main

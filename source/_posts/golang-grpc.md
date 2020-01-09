@@ -35,7 +35,6 @@ func Run() {
 
 或许，我们也可以使用rpc通信。
 
-![](https://show-file.che001.com/fileserver/view?id=1ef0f380-ee2c-11e9-bdac-0242ac142204)
 ## Golang RPC
 不少语言都有自己的rpc框架，比如PHP有phprpc和yar，但是这些rpc框架局限在这个语言，无法做到跨语言之间的调用，而Go也是类似，Go标准库自带的rpc有好几种，默认采用Gob编码，只能在Go语言之间使用,还有一种jsonrpc，采用的是json编码，如果你需要跨语言的话，最好采用gRPC。
 
@@ -149,9 +148,6 @@ gRPC相比于其它rpc语言，目前发展迅速，不仅仅支持多语言（G
 2. 安装gRPC: go get -u google.golang.org/grpc
 3. 安装Protobuf v3 compiler，我的Ubuntu系统是自带这个，如果不带的话可以使用apt安装，其它系统可以参考[github](https://github.com/protocolbuffers/Protobuf)
 4. 安装go的Protobuf插件： go get -u github.com/golang/Protobuf/protoc-gen-go
-
-首先，先编写IDL，如果大家使用Goland可以装个插件，这样看起来舒服一点：
-![](https://show-file.che001.com/fileserver/view?id=ec457894-ec05-11e9-a63f-0242ac143004)
 
 这个IDL文件并不是Go的语法，只是Protobuf的描述语法，大概的意思相信大部分都能看懂，service 是用来定义服务，然后还定义了请求和响应的参数类型，详细的用法可以参考Protobuf的[官方文档](https://developers.google.com/protocol-buffers/docs/proto3#simple)。
 

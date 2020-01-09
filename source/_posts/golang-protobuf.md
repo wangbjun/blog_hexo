@@ -57,8 +57,6 @@ proto其实是一种DSL语法，这个proto文件最终会使用protoc编译成�
 
 我这里拿一个简单实际的例子（person.proto）来说明一下，建议大家使用Goland安装一个插件，这样有颜色还可以检查语法：
 
-![](https://show-file.che001.com/fileserver/view?id=b94d3047-ec05-11e9-bdac-0242ac142204)
-
 - 第一行syntax是声明proto语法版本，如果不声明默认是2，建议使用3版本
 - 然后是package也就包，这个影响到最后生成的go文件的包
 - 后面message是用来声明一个数据对象，我觉得可以理解为结构体struct，这个数据对象有自己的数据成员，每个字段有类型和默认值。
@@ -208,7 +206,6 @@ func BenchmarkJson(b *testing.B) {
 为了方便对比，指定了测试次数为1000次，测试结果如下：
 
 在1个person的级别：
-![](https://show-file.che001.com/fileserver/view?id=cdca0865-ec05-11e9-a63f-0242ac143004)
 
 可以看出，理论上proto明显比json要快不少，每次操作大概是4-5倍差距。后面在10，100个person的级别的测试中，基本上都是保持在4-5倍性能的差距，这个结果也和网上大部分测试结果一致。
 
