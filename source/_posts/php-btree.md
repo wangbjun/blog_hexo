@@ -28,7 +28,7 @@ tags:
 ![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fvgyw562xgj20o00hcn1w.jpg)
 
 最后贴一个PHP实现的代码：
-#### 树节点类:
+### 树节点类:
 ```php
 class Node
 {
@@ -56,7 +56,7 @@ class Node
 ```
 这里涉及到几个算法，比较难理解：
 
-#### 左旋和右旋
+### 左旋和右旋
 
 ```php
     /**
@@ -91,7 +91,7 @@ class Node
         $p = $r;
     }
 ```
-#### 左平衡旋转和右平衡旋转
+### 左平衡旋转和右平衡旋转
 
 ```php
     /**

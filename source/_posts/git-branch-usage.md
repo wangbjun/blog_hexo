@@ -11,7 +11,7 @@ category: 工具
 
 <!--more-->
 
-#### 1. git branch
+## 1. git branch
 默认情况下我们都是在master分支下，我们可以使用 **git branch** 命令查看当前所在分支：
 ```shell
 jwang@jwang:~/git_demo$ git branch
@@ -32,7 +32,7 @@ jwang@jwang:~/git_demo$ git branch
 ```
 这里可以看到我们已经创建了一个dev分支，但是这时候我们还在master分支，并没有切换到dev分支。
 
-#### 2. git checkout
+## 2. git checkout
 这个命令之前说过，但是在分支里面它还有另一个功能，那就是切换分支，比如如果你想切换到dev分支，用法如下：
 ```
 jwang@jwang:~/git_demo$ git checkout dev
@@ -74,7 +74,7 @@ To https://github.com/wangbjun/git_demo
 
 >第一次使用git的人会很好奇这个**origin**到底是啥意思？按我的理解，这个origin其实就是指远程分支，```git pull origin dev```命令就是从远程的dev分支上拉代码。当然你可以在从master或者其它分支拉取代码，不过一般不建议从其它远程分支拉代码。
 
-#### 3. git merge
+## 3. git merge
 当你在这个dev分支完成开发，测试也没问题了，你就需要把这个dev分支合并到master分支，这时候就需要使用merge命令，这个命令需要明白是把谁合并到谁。假如你在dev分支执行 ```git merge master```，这就表示是把master分支合并到dev，最终代码在dev上。有些新手会理解错为把dev分支合并到master，这点需要注意。
 
 在哪个分支上面合并都一样，你也可以在master分支上合并dev，反正最终都是一份代码，但是从项目管理的角度来说，应该先在dev分支合并master，然后再测试，因为master分支可能已经有别人提交的新的修改，你需要把这些修改合并过来。
@@ -137,7 +137,7 @@ nothing to say
 然后重新commit就行，最后如果没问题的话push就行。
 >一般情况下，如果你不解决冲突的话是不允许你push代码的，但是你可以强制push，这样就会把冲突的代码（其实就是上面带着<<<<<符号的代码）push到远程分支，这样当然是不好滴，千万不要干这种坑事。
 
-#### 总结：
+## 总结：
 在实际开发中，我们一般遵循大概这样的流程，比如小A和小B现在要开始做一个项目的大功能，这个功能开发周期比较长，这时候由小A创建开发分支，小A的操作如下：
 ```shell
 1.小A首先切换到master分支： git checkout master

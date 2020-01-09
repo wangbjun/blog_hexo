@@ -7,7 +7,7 @@ tags:
     - ORM
 ---
 
-### 1.什么是ORM？
+## 1.什么是ORM？
 >对象关系映射（Object Relational Mapping，简称ORM）模式是一种为了解决面向对象与关系数据库存在的互不匹配的现象的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将程序中的对象自动持久化到关系数据库中。
 
 ORM并不是PHP独有的东西，只要和数据库打交道的语言都可以使用ORM，比如Java Web三大框架里面Hibernate，还有Doctrine(PHP重量级的ORM) ，Eloquent（laravel框架默认ORM，也可以单独使用）。
@@ -72,10 +72,10 @@ $orders = DB::table('orders')
 但是这些并不是真正意义上的ORM，最多只算得上是O(object)，它只是把数据库查询操作对象化了，但是没有解决对象之间的关系问题！
 
 ---
-### 2.Doctrine
+## 2.Doctrine
 doctrine是symfony框架默认ORM，下面我就简单介绍一下，官网连接: https://www.doctrine-project.org/ 
 
-#### 一.安装
+### 一.安装
 
 按照官方的教程，最好的方式是使用composer:
 ```json
@@ -86,7 +86,7 @@ doctrine是symfony框架默认ORM，下面我就简单介绍一下，官网连�
     }
 }
 ```
-#### 二.在项目根目录创建一个bootstrap.php文件：
+### 二.在项目根目录创建一个bootstrap.php文件：
 
 ```php
 <?php
@@ -121,7 +121,7 @@ $config按照官方说法现在推荐使用 Annotation 也就说注解的方式�
 
 下面还有数据库连接配置，官方给的案例是使用了sqlite，这里我改成了MySQL。
 
-#### 三.配置命令行工具
+### 三.配置命令行工具
 
 同样在项目根目录新建一个 cli-config.php 文件：
 ```php
@@ -133,7 +133,7 @@ return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager
 ```
 这样就可以使用命令行工具执行一些操作，比如说生成数据表，更新数据表
 
-#### 四.定义数据库实体，创建数据表
+### 四.定义数据库实体，创建数据表
 
 先来一个简单的，在app目录下创建一个 Product.php 文件，这个文件其实可以理解为是model，即数据库模型文件！内容如下：
 ```php
@@ -182,7 +182,7 @@ class Product
 ```
 使用这种方式建表不用去写SQL语句，无论是mysql还是sql server，或者oracle，都没问题，一键迁移，ORM抹平了数据库之间的差异！
 
-#### 五.持久化数据到数据表
+### 五.持久化数据到数据表
 
 上面的步骤搞定了数据表创建的问题，下面来介绍一下如何插入数据到数据表，为了方便，这里我直接写在index.php里面：
 ```php
@@ -201,7 +201,7 @@ var_dump($product);
 ```
 可以看出来这是一个完全OOP的写法，是先实例化一个数据表实体，然后通过setter去设置去属性，最后调用persist和flush持久化数据库里面。
 
-#### 六.查询数据
+### 六.查询数据
 
 使用ORM查询数据也很简单,：
 ```php
@@ -232,7 +232,7 @@ $entityManager->flush();
 ```
 我们只需调用这个对象的setter方法，然后flush即可！
 
-#### 七.表与表之间的关系
+### 七.表与表之间的关系
 
 数据表和数据表之间的关系总体来说可以分为下面几种：1对1，1对多，多对多，在doctrine里面有细分为下面几种：
 
@@ -356,7 +356,7 @@ $comments = $product->getComments()->toArray();
 ```
 ---
 
-### 3.总结
+## 3.总结
 
 ORM试图把数据表之间的关系抽象成数据模型对象之间的关系，让开发人员少拼SQL，以更面向对象的方式开发，更加专注业务模型，有好处但是也有很多问题！
 
