@@ -7,3 +7,5 @@ type: about
 欢迎光临博客，Welcome...
 
 Email: wangbenjun@gmail.com
+
+Github: https://wangbjun.github.io
