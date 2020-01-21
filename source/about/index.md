@@ -2,6 +2,7 @@
 title: 关于
 date: 2020-01-07 19:21:55
 type: about
+comments: false
 ---
 
 欢迎光临博客，Welcome...
