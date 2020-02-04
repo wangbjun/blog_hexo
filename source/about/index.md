@@ -10,5 +10,3 @@ comments: false
 - Email: wangbenjun@gmail.com
 
 - Github: https://github.com/wangbjun
-
-- Blog: http://wangbjun.site
