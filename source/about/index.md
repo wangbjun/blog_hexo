@@ -7,6 +7,8 @@ comments: false
 
 欢迎光临博客，Welcome...
 
-Email: wangbenjun@gmail.com
+- Email: wangbenjun@gmail.com
 
-Github: https://wangbjun.github.io
+- Github: https://github.com/wangbjun
+
+- Blog: http://wangbjun.site
