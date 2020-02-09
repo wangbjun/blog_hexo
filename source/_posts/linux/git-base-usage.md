@@ -2,7 +2,7 @@
 title: Git最简单的基础入门教程
 date: 2018-02-10 12:05:45
 tags: Git
-category: 工具
+category: Linux
 ---
 
 现在很多公司都用git来管理代码，老一些的项目可能还在用svn，git比svn好的地方就在于其便利的分支管理功能，特别适用于多人协作开发，当年祖师爷linus开发git就是为了方便Linux操作系统的开发。

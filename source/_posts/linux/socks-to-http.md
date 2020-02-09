@@ -2,7 +2,7 @@
 title: 科学上网之socks代理转http(s)
 date: 2018-11-03 19:02:46
 tags: Socks
-category: 工具
+category: Linux
 ---
 
 从事IT开发行业的总免不了用用Google，看看国外互联网，但是呢有道墙大家都懂的，其中有一种socks5的梯子，一般都是配置浏览器，如何在命令行下也使用呢？有过使用经验的都知道，Linux终端是不走socks代理配置的，除此之外，很多软件或者应用也不支持socks代理设置，但是有一个软件是可以把socks代理转为http代理，这个软件就叫做privoxy，下面简单介绍下这个软件使用：

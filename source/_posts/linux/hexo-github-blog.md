@@ -2,7 +2,7 @@
 title: Hexo+Github搭建免费技术博客
 date: 2020-01-08 12:05:45
 tags: Hexo
-category: 工具
+category: Linux
 ---
 
 最近想搭建了一个自己的博客网站，经过调研，最终决定使用Hexo+Github的形式搭建，大概花了3个小时的时间，这里简单记录一下过程，备用。

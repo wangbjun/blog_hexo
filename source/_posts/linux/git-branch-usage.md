@@ -2,7 +2,7 @@
 title: Git最简单的分支操作教程
 date: 2018-02-15 12:13:41
 tags: Git
-category: 工具
+category: Linux
 ---
 
 之前那篇文章，只是简单讲了一下git最基础最简单的用法，但是git还有一个非常重要的功能就是分支，默认情况下只有一个master分支，我们可以直接在master分支开发，完全没问题，

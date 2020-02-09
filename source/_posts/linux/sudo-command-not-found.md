@@ -1,7 +1,7 @@
 ---
 title: 解决sudo command not found 报错
 date: 2019-06-02 11:29:06
-category: 工具
+category: Linux
 tags: 
     - Sudo
 ---

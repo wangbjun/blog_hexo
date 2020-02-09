@@ -1,7 +1,7 @@
 ---
 title: 解决Deepin-Wine-QQ或微信图标Bug
 date: 2018-12-01 12:11:08
-category: 工具
+category: Linux
 tags: 
     - Deepin-Wine
 ---

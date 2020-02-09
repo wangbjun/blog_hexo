@@ -1,9 +1,8 @@
 ---
 title: 一条Linux命令
 date: 2018-06-08 15:01:06
-category: 编程开发
-tags: 
-    - Linux
+category: Linux
+tags: Linux
 ---
 
 咱今天先从一个命令讲起，先看一个命令：

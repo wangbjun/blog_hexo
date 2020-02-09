@@ -1,7 +1,7 @@
 ---
 title: 内网穿透之SSH端口转发
 date: 2018-10-03 12:29:06
-category: 工具
+category: Linux
 tags: 
     - SSH
 ---
