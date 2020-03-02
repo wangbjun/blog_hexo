@@ -54,3 +54,13 @@ WINEPREFIX=~/.deepinwine/Deepin-WeChat deepin-wine winecfg
 ## 搜狗输入法
 搜狗输入法其实也是不支持4k自动缩放的，不过我们可以把皮肤的字体设置大一点，达到的效果是一样的：
 ![](https://wangbjun.github.io/images/16d0f301af11cca2.jpg)
+
+## QT系列软件
+Linux下面有很多基于QT开发的软件，它的缩放有可能是跟系统走的，但是也有可能不是，根据我的经验，QT需要设置一下2个环境变量：
+```
+export QT_DEVICE_PIXEL_RATIO=2
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+```
+为什么有2个呢？据说第一个是老版本会用到，但是这个缩放因子只支持整数倍，你不能写1.5，有点蛋疼！
+
+有些软件设置之后可能会放的太大，这时候我建议针对不同的软件，可以在启动之前使用export设置环境变量，或者在其快捷方式里面设置一下都可以，特殊情况特殊处理，但是大部分设置为2的话还可以接受。
