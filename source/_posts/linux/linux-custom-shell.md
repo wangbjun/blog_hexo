@@ -66,8 +66,8 @@ jwang@jwang:sudo ln -s /home/jwang/Bin/update /usr/bin/update
 上面的命令是建立一个软链接到/usr/bin目录，这样就可以直接敲update命令了
 ```
 jwang@jwang:~$ update
-Hit:1 http://cn.archive.ubuntu.com/ubuntu xenial InRelease
-Hit:2 http://cn.archive.ubuntu.com/ubuntu xenial-updates InRelease
+Hit:1 https://cn.archive.ubuntu.com/ubuntu xenial InRelease
+Hit:2 https://cn.archive.ubuntu.com/ubuntu xenial-updates InRelease
 .........
 .........
 Fetched 102 kB in 2s (42.0 kB/s)

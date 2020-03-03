@@ -18,7 +18,7 @@ tags:
 
 ###　1.JetBrains 全家桶
 
-![2017_08_15_10:08:40.png](http://upload-images.jianshu.io/upload_images/3571187-2dd1696efe7b0182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![2017_08_15_10:08:40.png](https://upload-images.jianshu.io/upload_images/3571187-2dd1696efe7b0182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 有人说，此工具一出，此篇终结，没啥说的了。。。因为这个全家桶支持很多语言，C/C++、Java、Ruby、Python、Php、JavaScript、Go、Mysql、.Net 差不多囊括了常见的编程语言了吧？JetBrains系列都是基于JRE，也就是跨平台的，功能十分丰富，还可以安装插件，缺点就是运行速度相对比较慢（毕竟是Java虚拟机），大家可以去其官网看看，如果有钱可以买正版支持一下！
 

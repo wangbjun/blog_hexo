@@ -20,7 +20,7 @@ category: 编程开发
 ### 1.HTTP Basic Auth
 这种方式在早期一些Web系统比较常见，就是那种在浏览器弹出一个框让你输账号密码那种，简单易用，但是缺点一个不安全，其账号密码其实是明文（base64encode）传输的，而且每次都得带上。另外就是太丑了。。。
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fz041egnonj20ci08sgmf.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fz041egnonj20ci08sgmf.jpg)
 
 
 ### 2.Cookies\Session
@@ -30,7 +30,7 @@ category: 编程开发
 
 cookies里面存储的sessionid其实就是相当于身份证编号，每次访问网站里面我们带着这个编号，服务器拿着编号就可以找到对应的session里面存储的信息，一般情况下里面会存储一些用户信息，比如uid。
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fz04jhi9wij20lr03v74q.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fz04jhi9wij20lr03v74q.jpg)
 
 讲道理这套机制其实问题并不大，大部分时候都管用，但是cookies有一个毛病就是无法跨域，很多大公司有很多网站，这些网站域名可能还不一样。而且cookies对现在的手机APP支持不好，原生并不支持cookies。最后，就是服务器存储session也需要一些开销，特别是用户特别多的情况下。还有其它缺点这里就不列出来了，很多文章都有写到。
 
@@ -40,7 +40,7 @@ cookies里面存储的sessionid其实就是相当于身份证编号，每次访�
 ### 3.JWT
 一般说到JWT都会提到token，在我的理解里面token其实就是一个字符串，它可以是jwt token，也可以是sessionid token，token就是是一个携带认证信息的字符串。
 
-网上关于介绍JWT的文章特别多，大同小异，我们这里也懒的再说一遍了，贴一个大神的教程，我觉得讲的挺清晰了，[JSON Web Token 入门教程](http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)。
+网上关于介绍JWT的文章特别多，大同小异，我们这里也懒的再说一遍了，贴一个大神的教程，我觉得讲的挺清晰了，[JSON Web Token 入门教程](https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)。
 
 简单的说，JWT本质上是一种解决方案标准，该方案下一个token应该有3部分组成: **Header、Payload、Signature**, 其中前2部分差不多就是明文的，都是**json** 对象，里面存了一些信息，使用 **base64urlencode** 编码成一个字符串。最后的 **Signature** 是前面2个元素和**secret**一起加密之后的结果,加密算法默认是 **SHA256**, 这个**secret**应该只有服务器知道，解密的时候需要用到。
 

@@ -20,7 +20,7 @@ sudo apt install ntfs-3g
 ```
 然后你在文件管理的右边就会看到可以挂载的分区，其实这时候还没有挂载，鼠标点一下会自动挂载，下面里面的Data和Video分区就是我挂载好的：
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fvyhm4x86mj20580bgaa7.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvyhm4x86mj20580bgaa7.jpg)
 
 如果你用的不是桌面发行版，可以使用 mount 命令挂载
 
@@ -68,7 +68,7 @@ sudo apt install samba
 ```
 打开一个文件夹的属性你就会看到共享的选项，可以选择只读或者读写，也可以设置访问账号和密码，如果只是自己用，全部都勾上就行了！
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fvyhy77p2qj20ek0f9q3x.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvyhy77p2qj20ek0f9q3x.jpg)
 
 就是这么简单，但是如果你不是用的桌面版Linux，那也没问题，Samba的配置文件位于 /etc/samba/smb.conf, 自己加一个配置就行，配置文件示例：
 ```

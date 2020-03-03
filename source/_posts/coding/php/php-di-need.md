@@ -6,15 +6,15 @@ tags:
     - PHP
     - 依赖注入
 ---
->此文是本人翻译的来自国外某网站一篇文章 [Do you need a Dependency Injection Container?](http://fabien.potencier.org/do-you-need-a-dependency-injection-container.html)
+>此文是本人翻译的来自国外某网站一篇文章 [Do you need a Dependency Injection Container?](https://fabien.potencier.org/do-you-need-a-dependency-injection-container.html)
 
 >这篇文章是一系列关于依赖注入和PHP轻量级容器实现文章中的一部分：
-[Part 1: What is Dependency Injection?](http://fabien.potencier.org/article/11/what-is-dependency-injection)
-[Part 2: Do you need a Dependency Injection Container?](http://fabien.potencier.org/article/12/do-you-need-a-dependency-injection-container)
-[Part 3: Introduction to the Symfony Service Container](http://fabien.potencier.org/article/13/introduction-to-the-symfony-service-container)
-[Part 4: Symfony Service Container: Using a Builder to create Services](http://fabien.potencier.org/article/14/symfony-service-container-using-a-builder-to-create-services)
-[Part 5: Symfony Service Container: Using XML or YAML to describe Services](http://fabien.potencier.org/article/15/symfony-service-container-using-xml-or-yaml-to-describe-services)
-[Part 6: The Need for Speed](http://fabien.potencier.org/article/16/symfony-service-container-the-need-for-speed)
+[Part 1: What is Dependency Injection?](https://fabien.potencier.org/article/11/what-is-dependency-injection)
+[Part 2: Do you need a Dependency Injection Container?](https://fabien.potencier.org/article/12/do-you-need-a-dependency-injection-container)
+[Part 3: Introduction to the Symfony Service Container](https://fabien.potencier.org/article/13/introduction-to-the-symfony-service-container)
+[Part 4: Symfony Service Container: Using a Builder to create Services](https://fabien.potencier.org/article/14/symfony-service-container-using-a-builder-to-create-services)
+[Part 5: Symfony Service Container: Using XML or YAML to describe Services](https://fabien.potencier.org/article/15/symfony-service-container-using-xml-or-yaml-to-describe-services)
+[Part 6: The Need for Speed](https://fabien.potencier.org/article/16/symfony-service-container-the-need-for-speed)
 
 在这系列第一篇关于依赖注入的文章里，我尝试给出了一个依赖注入的web实例，今天我将要谈谈依赖注入容器。
 

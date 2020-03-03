@@ -158,7 +158,7 @@ for ($i = 1; $i <= Bitmap::MAX; $i++) {
 ```
 由于这里面涉及很多位运算操作，所以先回顾一下位操作：
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fwsu2sa2rkj20rt09vac1.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fwsu2sa2rkj20rt09vac1.jpg)
 
 此算法的实现是参考一个C语言版本的，简单解析一下：
 

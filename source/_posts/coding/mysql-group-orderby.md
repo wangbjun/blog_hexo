@@ -11,7 +11,7 @@ tags:
 
 先看一个数据表 blogs 结构，简单说一下，cat_id 就是分类ID，可以看到一个分类有多条记录：
 
-![image](http://upload-images.jianshu.io/upload_images/3571187-8d13727754425021.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image](https://upload-images.jianshu.io/upload_images/3571187-8d13727754425021.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 举个非常典型的问题:
 
@@ -33,6 +33,6 @@ select SUBSTRING_INDEX(GROUP_CONCAT(cat_id,'-',id ORDER BY view_num),',',3) from
 
 但是取出来的数组格式并不好看，是以 cat_id-id 这种形式取出来的，可以看到有多个：
 
-![image](http://upload-images.jianshu.io/upload_images/3571187-f5ba49d28a69e01a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image](https://upload-images.jianshu.io/upload_images/3571187-f5ba49d28a69e01a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 后面的操作只能拿到代码里面处理了，可能需要循环取出所有id，然后批量获取数据，最后再拼接出来想要的数据！虽然比较麻烦，在代码里面需要多出很多次for循环操作，但是相比于多查几十次库，这点代码运行开销还是很小的！

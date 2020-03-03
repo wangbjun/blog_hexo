@@ -236,7 +236,7 @@ $entityManager->flush();
 
 数据表和数据表之间的关系总体来说可以分为下面几种：1对1，1对多，多对多，在doctrine里面有细分为下面几种：
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fx6n9nprvzj208n09raab.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fx6n9nprvzj208n09raab.jpg)
 
 划分的有点复杂和难理解，这里我就简单介绍其中一种：oneToMany，即1对多关系，这个其实很常见，比如说一个产品可以有多个评论。
 

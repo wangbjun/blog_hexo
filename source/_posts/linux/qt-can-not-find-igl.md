@@ -21,7 +21,7 @@ tags:
 
 **问题解答**： 
 
-（1）如果是问题1,这个好办。只要安装libGL即可。这个在其他博客中也都有提到, 如[http://blog.sina.com.cn/s/blog_500bd63c0102uzmt.html](http://blog.sina.com.cn/s/blog_500bd63c0102uzmt.html) 
+（1）如果是问题1,这个好办。只要安装libGL即可。这个在其他博客中也都有提到, 如[https://blog.sina.com.cn/s/blog_500bd63c0102uzmt.html](https://blog.sina.com.cn/s/blog_500bd63c0102uzmt.html) 
 只需终端执行
 
 ```

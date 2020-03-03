@@ -35,11 +35,11 @@ var_dump($_REQUEST['age]);
 ```
 ### 请求头
 
-![](http://upload-images.jianshu.io/upload_images/3571187-3b1aa32292a0f9e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/3571187-3b1aa32292a0f9e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 这种提交方式也是ajax默认的提交方式,请求参数是以key-value键值对的形式传递到后端,在PHP里面通$_POST等超全局变量就可以获取到,简单实用。其未经解析的原始的数据其实是：name=PHP&age=25
 
-![](http://upload-images.jianshu.io/upload_images/3571187-c2d0236765996437.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/3571187-c2d0236765996437.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 2. JSON形式提交
 这种形式，需要设置一下请求头Content-Type为application/json，实例如下：
@@ -61,7 +61,7 @@ var_dump($_REQUEST['age]);
 ```
 ### 请求头
 
-![](http://upload-images.jianshu.io/upload_images/3571187-cbf271fe3dd4bad7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/3571187-cbf271fe3dd4bad7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 从上面的截图可以看到，请求参数那里变成Request Payload，虽然格式上看上去和之前form提交差不多，但是这时候如果后台用$_POST这类方法是无法获取的，需要换一种方式：
 ```
@@ -86,7 +86,7 @@ $input = file_get_contents('php://input');
 ```
 这是再查看请求头：
 
-![](http://upload-images.jianshu.io/upload_images/3571187-7f20f6b265d2e8bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/3571187-7f20f6b265d2e8bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 可以看到参数变成json格式，这时候PHP后端就可以采用json_decode函数去获取参数：
 ```
@@ -120,13 +120,13 @@ Content-Disposition: form-data; name="mode"
 
 这几种方式功能上说没什么区别，都能实现数据的提交，大家选择自己喜欢的方式就行，最重要的是前后端协调好, 虽然这里后端是以PHP为例，但是其他语言也是大同小异。最后，再说一下数组提交，这个倒不是新的提交方式，我这里是指遇到那种一个字段提交多个数据的情况，比如说删除多个文章，一般前端需要传多个id，举例子字段名字叫ids，一般有这2种方案：
 ### 1. 逗号相隔
-![](http://upload-images.jianshu.io/upload_images/3571187-5ca0c75d95ef56bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/3571187-5ca0c75d95ef56bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 这样传参，后端获取到之后是一个字符串，在PHP里面可以用explode这样的函数去把字符串拆分成数组，非常方便，当然你也可以选择其他分隔符，比如说“-”，“+”等字符。
 ### 2. JSON形式
 这就是文中说的第二种方式，把id放在数组里面以json方式传到后台，这样后台可以直接获取到一个数组.
 
-![](http://upload-images.jianshu.io/upload_images/3571187-8a85e131e56d62b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://upload-images.jianshu.io/upload_images/3571187-8a85e131e56d62b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 

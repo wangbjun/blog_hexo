@@ -9,7 +9,7 @@ tags:
 其实这些都是PHP SPL 标准库里面的东西, SPL是用于解决典型问题(standard problems)的一组接口与类的集合。说白了，这是PHP官方实现的一些数据结构,
 印象中Java的标准库就很强大，不要慌，PHP也有。
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fv0rjzmm26j20hz0himyz.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fv0rjzmm26j20hz0himyz.jpg)
 
 按顺序来，先讲一下这个双向链表(double link list)，数据结构讲的是思想，不分编程语言，所以先回顾一下基本概念吧。
 
@@ -35,7 +35,7 @@ tags:
 
 如果用PHP去实现链表倒是不难，毕竟PHP这么强大，可以用数组模拟，但是性能并不高，这里就看一下官方的实现吧：
 
-![](http://ww1.sinaimg.cn/large/5f6e3e27ly1fv0sjz2p5qj20ke0mzdis.jpg)
+![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fv0sjz2p5qj20ke0mzdis.jpg)
 
 可以看到这个类实现了Iterator，arrayAccess等接口，就意味着可以像数组一样访问这个对象，有push,pop,shift,unshift,current等方法。
 

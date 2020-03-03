@@ -9,7 +9,7 @@ category: 编程开发
 首先，先阐述一个误区，很多人以为gRPC只能go语言使用，以为这个g代表的就是go，其实并不是，这个g应该理解成Google，这个rpc框架是Google出品，不过Go对这个框架的支持确实非常好，看一下官网的介绍：
 >gRPC is a modern open source high performance RPC framework that can run in any environment. It can efficiently connect services in and across data centers with pluggable support for load balancing, tracing, health checking and authentication. It is also applicable in last mile of distributed computing to connect devices, mobile applications and browsers to backend services.
 
-详细的介绍可以参考[官网](http://grpc.io)（grpc.io）,简单说，gRPC是一个开源的高性能rpc框架。
+详细的介绍可以参考[官网](https://grpc.io)（grpc.io）,简单说，gRPC是一个开源的高性能rpc框架。
 
 说到rpc，很多搞微服务的都喜欢用，特别是Java领域，rpc全称 Remote Procedure Call，翻译过来叫远程过程调用，这个翻译并不是特别好理解。
 

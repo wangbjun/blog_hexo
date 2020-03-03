@@ -8,7 +8,7 @@ category: Linux
 最近想搭建了一个自己的博客网站，经过调研，最终决定使用Hexo+Github的形式搭建，大概花了3个小时的时间，这里简单记录一下过程，备用。
 
 ## 综述
-Github提供了一个免费的GIthub Pages功能，简单说就是可以让你存放静态的资源文件，比如css、js、html、image，同时会给你分配一个免费域名，格式：http://xxx.github.io
+Github提供了一个免费的GIthub Pages功能，简单说就是可以让你存放静态的资源文件，比如css、js、html、image，同时会给你分配一个免费域名，格式：https://xxx.github.io
 
 所以你只需要注册一个Github账号，然后新建一个repository就行了，一毛线都不用花。
 
@@ -54,7 +54,7 @@ Global Options:
   --silent  Hide output on console
 
 For more help, you can use 'hexo help [command]' for the detailed information
-or you can check the docs: http://hexo.io/docs/
+or you can check the docs: https://hexo.io/docs/
 ```
 
 这里只是列出一部分命令，比较重要的就是init，它是用来创建一个新项目
