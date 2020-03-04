@@ -1,5 +1,5 @@
 ---
-title: 一个普通人眼里的“武汉肺炎”
+title: “武汉肺炎”小记
 date: 2020-02-06 09:51:06
 tags: Life
 category: 生活

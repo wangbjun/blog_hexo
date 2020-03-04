@@ -10,7 +10,7 @@ $code-block {
   padding: 0;
   font-size $code-font-size;
   color: $highlight-foreground;
-  background: $highlight-background;
+  background: #f5f2f0;
   line-height: $line-height-code-block;
 }
 
@@ -38,8 +38,10 @@ pre {
 
 .highlight {
   @extend $code-block;
-  border-radius: 1px
-
+  border-radius: 16px
+  border-style: solid
+  border-width: 4px
+  border-color: #e0dfcc
   pre {
     border: none;
     margin: 0;
@@ -84,7 +86,7 @@ pre {
     width: 100%
     padding-left: 10px
     padding-right: 10px
-    background-color: $highlight-background
+    background-color: #f5f2f0
   }
 
   .line { height: 20px; }

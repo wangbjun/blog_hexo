@@ -31,7 +31,7 @@ $orange       = #fc6423
 // --------------------------------------------------
 
 // Global text color on <body>
-$text-color                   = $black-light
+$text-color                   = #000
 
 // Global link color.
 $link-color                   = $black-light
@@ -46,7 +46,7 @@ $border-color                 = $grey-light
 $body-bg-color                = white
 
 // Selection
-$selection-bg                 = $blue-deep
+$selection-bg                 = #fc6423cf
 $selection-color              = white
 
 
@@ -62,7 +62,7 @@ get_font_family(config) {
 }
 
 // Font families.
-$font-family-chinese      = "Helvetica","Arial","PingFang SC","Noto Sans","Roboto","Microsoft Yahei","WenQuanYi Micro Hei"
+$font-family-chinese      = "Georgia","serif"
 
 $font-family-base         = $font-family-chinese, sans-serif
 $font-family-base         = get_font_family('global'), $font-family-chinese, sans-serif if get_font_family('global')
@@ -146,7 +146,7 @@ $code-font-size                 = 13px
 $code-font-size                 = unit(hexo-config('font.codes.size'), px) if hexo-config('font.codes.size') is a 'unit'
 $code-border-radius             = 3px
 $code-foreground                = $black-light
-$code-background                = $gainsboro
+$code-background                = #f5f2f0
 
 
 
