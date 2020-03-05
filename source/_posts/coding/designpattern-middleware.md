@@ -12,11 +12,11 @@ category: 编程开发
 ## 简介
 说起中间件模式，估计很多人都想起来下面这张图，一个Web请求经过多个中间件的过滤，像pipeline一样处理这个请求，最终返回响应。
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g3ow77jcovj20it0e9aas.jpg)
+<img src = "/images/old/5f6e3e27ly1g3ow77jcovj20it0e9aas.jpg" />
 
 中间件往往部署在路由的地方，用于统一过滤请求，举个例子，我们有一个特殊的服务，必须要求用户的年龄大于18岁，如果不使用中间件，我们传统的做法就是在每个请求的控制器或者方法里面做判断，从功能上说没啥问题，但是代码不够优雅，需要写很多重复代码，而且不利于维护，哪天我们要把这个年龄改成20岁呢？
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g3owo9uj4hj20i30a1t9o.jpg)
+<img src = "/images/old/5f6e3e27ly1g3owo9uj4hj20i30a1t9o.jpg" />
 
 但是常见的23种设计模式里面并没有中间件模式，其实中间件是管道模式（也有人说是装饰模式）的一种实现，我也不知道为什么大部分框架都叫做中间件(middleware)...?
 

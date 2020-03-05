@@ -20,7 +20,7 @@ category: 编程开发
 ### 1.HTTP Basic Auth
 这种方式在早期一些Web系统比较常见，就是那种在浏览器弹出一个框让你输账号密码那种，简单易用，但是缺点一个不安全，其账号密码其实是明文（base64encode）传输的，而且每次都得带上。另外就是太丑了。。。
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fz041egnonj20ci08sgmf.jpg)
+<img src = "/images/old/5f6e3e27ly1fz041egnonj20ci08sgmf.jpg" />
 
 
 ### 2.Cookies\Session
@@ -30,7 +30,7 @@ category: 编程开发
 
 cookies里面存储的sessionid其实就是相当于身份证编号，每次访问网站里面我们带着这个编号，服务器拿着编号就可以找到对应的session里面存储的信息，一般情况下里面会存储一些用户信息，比如uid。
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fz04jhi9wij20lr03v74q.jpg)
+<img src = "/images/old/5f6e3e27ly1fz04jhi9wij20lr03v74q.jpg" />
 
 讲道理这套机制其实问题并不大，大部分时候都管用，但是cookies有一个毛病就是无法跨域，很多大公司有很多网站，这些网站域名可能还不一样。而且cookies对现在的手机APP支持不好，原生并不支持cookies。最后，就是服务器存储session也需要一些开销，特别是用户特别多的情况下。还有其它缺点这里就不列出来了，很多文章都有写到。
 

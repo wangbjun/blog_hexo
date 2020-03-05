@@ -80,7 +80,7 @@ func main() {
 ### 数组函数
 Go内置了一些函数可以操作数组，如果你使用了IDE的话，可以“点”出来：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fzgltdja32j20g4054wen.jpg)
+<img src = "/images/old/5f6e3e27ly1fzgltdja32j20g4054wen.jpg" />
 
 然而，append并不是用来操作数组的，其实它是用来操作变长数组的，即slice, 又称切片。
 

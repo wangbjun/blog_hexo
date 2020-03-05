@@ -38,7 +38,7 @@ Intel对Linux支持很好，所以Linux下面的intel集显驱动非常好，内
 
 ## 自动安装
 不同Linux发行版安装显卡驱动略有差异，有不少发行版都提供了一个比较简单的安装方式，比如Ubuntu在附加驱动里面就可以安装驱动。
-![](https://p1.pstatp.com/large/pgc-image/7645cd7fcf2d40079e5aa87cb7d2c6ba)
+<img src="/images/old/7645cd7fcf2d40079e5aa87cb7d2c6ba.jpeg" />
 
 在附加驱动里面我们可以选择需要安装的驱动，在这里列出的基本上都不会有问题，安装完成之后重启即可，默认情况下会自动启用独显！英伟达的显卡会有一个驱动设置面板，可以做一些简单设置。
 

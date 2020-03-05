@@ -9,7 +9,7 @@ tags:
 其实这些都是PHP SPL 标准库里面的东西, SPL是用于解决典型问题(standard problems)的一组接口与类的集合。说白了，这是PHP官方实现的一些数据结构,
 印象中Java的标准库就很强大，不要慌，PHP也有。
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fv0rjzmm26j20hz0himyz.jpg)
+<img src = "/images/old/5f6e3e27ly1fv0rjzmm26j20hz0himyz.jpg" />
 
 按顺序来，先讲一下这个双向链表(double link list)，数据结构讲的是思想，不分编程语言，所以先回顾一下基本概念吧。
 
@@ -27,15 +27,13 @@ tags:
 
 借2张图理解一下：
 
-![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536298900470&di=bed31d47583655de7d4e623e3c4d2bdf&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D1355954038%2C3984007412%26fm%3D214%26gp%3D0.jpg)
-
-![](https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=152820947,1698821981&fm=26&gp=0.jpg)
+<img src="/images/old/5f62e3e2x7ly1fv0rjzmxm26j20hz0him1yz.jpg" >
 
 举个形象的例子，这个链表就有点像链条，每一个链条单元是首尾相接，自行车链条就是环型链表，而数组就是铁轨，直的，虽然跑的快, 但是要求高！
 
 如果用PHP去实现链表倒是不难，毕竟PHP这么强大，可以用数组模拟，但是性能并不高，这里就看一下官方的实现吧：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fv0sjz2p5qj20ke0mzdis.jpg)
+<img src = "/images/old/5f6e3e27ly1fv0sjz2p5qj20ke0mzdis.jpg" />
 
 可以看到这个类实现了Iterator，arrayAccess等接口，就意味着可以像数组一样访问这个对象，有push,pop,shift,unshift,current等方法。
 

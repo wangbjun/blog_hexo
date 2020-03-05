@@ -18,12 +18,12 @@ export GOPATH=/home/jwang/Go
 
 比如说安装了go，在使用 **sudo go** 这样命令的时候会报错，但是切换到 root 用户却没有问题，使用普通用户也没问题，查了一下发现原来 sudo 里面有一些配置：
 
-![](https://upload-images.jianshu.io/upload_images/3571187-2c5fdea0a1fd3101.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="/images/old/3571187-2c5fdea0a1fd3101.png" />
 
 ```
 sudo visudo
 ```
-![](https://upload-images.jianshu.io/upload_images/3571187-319d779b9cae7fc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="/images/old/3571187-319d779b9cae7fc2.png" />
 
 在这个 **/etc/sudoers** 文件里面，有一个secure_path配置，大家一看就知道了，它的意思当你使用 **sudo+command** 这种形式执行命令的时候会从其配置的路径里面寻找命令，肯定是没有你自定义的PATH的，这个主要是安全考虑。
 

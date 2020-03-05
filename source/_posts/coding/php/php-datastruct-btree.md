@@ -11,13 +11,13 @@ tags:
 
 这是典型的树结构图：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fv8v3f7a7pj20do0asgn6.jpg)
+<img src = "/images/old/5f6e3e27ly1fv8v3f7a7pj20do0asgn6.jpg" />
 
 <!--more-->
 
 这是典型的二叉树结构图：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fv8v3mm7k1j20mu0cqq6u.jpg)
+<img src = "/images/old/5f6e3e27ly1fv8v3mm7k1j20mu0cqq6u.jpg" />
 
 区别就在于二叉树每一个树节点最多只有2个子树，但是树就不一定了，可能有一个子树或者多个子树
 
@@ -122,7 +122,7 @@ $tree->insert(18, 'Where');
 ```
 可以用xdebug查看一下生成的结构是否正确
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fv8w7e530aj20cv0k1q3x.jpg)
+<img src = "/images/old/5f6e3e27ly1fv8w7e530aj20cv0k1q3x.jpg" />
 
 ### 2.查找
 二叉树的结构生成了，如果查找呢？查找其实还算简单的，也是从根节点开始递归遍历, 判断根节点的key是否等于需要查找的key，如果不等于判断是大还是获取其子树节点：

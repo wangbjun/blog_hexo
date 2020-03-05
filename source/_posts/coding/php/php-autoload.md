@@ -210,6 +210,6 @@ var_dump($c);
 
 最终目录结构如下图：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fx1uzv0zpuj208n0723yl.jpg)
+<img src = "/images/old/5f6e3e27ly1fx1uzv0zpuj208n0723yl.jpg" />
 
 现在大多数Web框架都是采用MVC模式，一般都有一个统一的入口文件，比如index.php, 通常会在这个入口文件定义自动加载机制，使用composer的话只需要include一个autoload.php文件即可！

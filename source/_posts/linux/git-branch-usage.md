@@ -7,7 +7,7 @@ category: Linux
 
 之前那篇文章，只是简单讲了一下git最基础最简单的用法，但是git还有一个非常重要的功能就是分支，默认情况下只有一个master分支，我们可以直接在master分支开发，完全没问题，
 但是当你的项目有十几个甚至几十个人同时在开发的时候，如果都使用master分支，就会非常容易出现冲突、甚至出现代码被覆盖的问题，而且上线也是个问题，你不知道哪些文件可以上，哪些不可以上，很容易把一些未经测试的代码上线，这时候就需要启用分支功能。
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fyowuwste0j20nw0bvt93.jpg)
+<img src = "/images/old/5f6e3e27ly1fyowuwste0j20nw0bvt93.jpg" />
 
 <!--more-->
 

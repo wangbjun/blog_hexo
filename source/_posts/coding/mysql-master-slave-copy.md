@@ -20,7 +20,7 @@ tags:
 
 1.首先下载MySQL安装包，地址：https://dev.mysql.com/downloads/mysql/ 选择符合自己需要的下载 
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvpadrk2mvj210s0eygnn.jpg)
+<img src = "/images/old/5f6e3e27ly1fvpadrk2mvj210s0eygnn.jpg" />
 
 这里以8.0.12版本为例，下载tar压缩包后解压，其目录结构如下：
 ```

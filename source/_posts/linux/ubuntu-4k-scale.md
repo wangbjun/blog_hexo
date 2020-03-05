@@ -6,7 +6,7 @@ tags:
     - Ubuntu
 ---
 
-![](https://wangbjun.github.io/images/16d0f0f03263cb7b.jpg)
+![](https://wangbjun.github.io/images/old/16d0f0f03263cb7b.jpg)
 
 开头一张图介绍一下我现在日常生活和开发使用的电脑配置：Ubuntu 16.04 + i7-8700k + 1060 + nvme ssd + 32G RAM + 4k显示器，这个配置倒不算很高端，但是开发用体验很高，系统的流畅程度非常高
 
@@ -25,18 +25,18 @@ tags:
 如果你要换4k显示屏，有一点需要注意，不少i7 CPU 内置集显理论上是带的动4k+60fps的，但是只支持dp接口，不支持hdmi，这一点可以在intel官网的cpu详细规格里面可以查阅。但是大部分主板都不会带dp接口，很少很少，只有极少部分高端主板会带，而现在大部分独显都会带dp口。
 
 众所周知，NVIDIA的独显在Linux上面的驱动支持都不是太好，但是intel的集显支持非常好，如果你想要使用4k显示器，一个独显少不了，不过据我目前的使用体验来说，1060 表现还不错，建议大家开启高性能模式，如下图：
-![](https://wangbjun.github.io/images/16d0f203bbf9601b.jpg)
+![](https://wangbjun.github.io/images/old/16d0f203bbf9601b.jpg)
 
 ## 缩放设置
 这是重点，根据我经验，在4k+27英寸显示器的配置下，缩放设置很简单，不需要什么环境变量，直接在显示里面设置缩放就行，默认是1，设置一个1.75-2比较合适。
-![](https://wangbjun.github.io/images/16d0f23300cd21d1.jpg)
+![](https://wangbjun.github.io/images/old/16d0f23300cd21d1.jpg)
 实际上，上面这个设置好，已经可以解决99%的缩放问题了，不需要什么环境变量，上一些应用的图给大家看看：
 
-![](https://wangbjun.github.io/images/16d0f26799e5bf08.jpg)
+![](https://wangbjun.github.io/images/old/16d0f26799e5bf08.jpg)
 
-![](https://wangbjun.github.io/images/16d0f27645283d4e.jpg)
+![](https://wangbjun.github.io/images/old/16d0f27645283d4e.jpg)
 
-![](https://wangbjun.github.io/images/16d0f27f294742ce.jpg)
+![](https://wangbjun.github.io/images/old/16d0f27f294742ce.jpg)
 
 ## deepin缩放
 有些软件不走上面的缩放设置，比如deepin qq或wechat，估计很多用Linux的都会使用移植的deepin应用，但是也有办法:
@@ -44,7 +44,7 @@ tags:
 WINEPREFIX=~/.deepinwine/Deepin-WeChat deepin-wine winecfg
 ```
 在弹出的对话框里面找到graphics设置，设置一个比较合适的dpi，以我个人经验，150-170比较合适，如下图：
-![](https://wangbjun.github.io/images/16d0f2ba8e833515.jpg)
+![](https://wangbjun.github.io/images/old/16d0f2ba8e833515.jpg)
 
 ## 网易云音乐
 网易云的软件在4k下面也是个刺头，暂时没有完美的方案，但是有一个可以凑合用，在网易的desktop文件Exec配置里面加入：
@@ -53,7 +53,7 @@ WINEPREFIX=~/.deepinwine/Deepin-WeChat deepin-wine winecfg
 ```
 ## 搜狗输入法
 搜狗输入法其实也是不支持4k自动缩放的，不过我们可以把皮肤的字体设置大一点，达到的效果是一样的：
-![](https://wangbjun.github.io/images/16d0f301af11cca2.jpg)
+![](https://wangbjun.github.io/images/old/16d0f301af11cca2.jpg)
 
 ## QT系列软件
 Linux下面有很多基于QT开发的软件，它的缩放有可能是跟系统走的，但是也有可能不是，根据我的经验，QT需要设置一下2个环境变量：

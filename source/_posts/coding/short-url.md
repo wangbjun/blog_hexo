@@ -8,7 +8,7 @@ category: 编程开发
 ## 1.背景介绍
 
 相信很多人手机上都收到过一些营销短信，短信里面有时候会附带一些网址，如下图
-![](https://wangbjun.github.io/images/16ada545111ae94d.jpg)
+![](https://wangbjun.github.io/images/old/16ada545111ae94d.jpg)
 这些网址往往都是非常短，但是当我们打开之后，如果你仔细观察，中间会有跳转，最终浏览器地址栏显示的网址并不是你短信里面看到的网址，这就是短网址！
 
 <!--more-->

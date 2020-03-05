@@ -51,7 +51,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## 5. git commit
 这是紧接着第4步的，假设你已经使用 **git add** 命令添加了自己需要提交的文件，这时候就需要使用 **git commit** 来提交自己的修改，通常执行这个命令会弹出一个对话框让你添加提交信息，提交信息就是相对于一个备注吧！
-![](https://ww1.sinaimg.cn/mw690/5f6e3e27ly1fyop1wo02hj20ru0g475z.jpg)
+<img src = "/images/old/5f6e3e27ly1fyop1wo02hj20ru0g475z.jpg" />
 
 在Linux下面默认使用的是nano编辑器，很多人看到这个对话框会很懵，不知道咋用，这和vim的操作完全不一样，但也不难，直接输入你想写的内容，然后按 **Ctrl+X** 就会弹出一个选项，按 **Y**，最后回车就可以了
 
@@ -91,7 +91,7 @@ See 'git help config' and search for 'push.default' for further information.
 
 当你使用IDE或者一些图形化界面工具时更简单，比如我常用的PHPStorm (idea全家桶快捷键都一样), 快捷键 **Ctrl+T** 就是pull，**Ctrl+K** 可以列出所有修改文件，默认勾选所有修改过的文件，填一下提交信息，回车就是commit了。然后 **Ctrl+Shift+K** 就是push代码，如果不需要修改默认设置，直接回车就行，熟练操作的话非常方便，比使用命令行的效率高很多。
 
-![](https://ww1.sinaimg.cn/mw690/5f6e3e27ly1fyoqxam6p5j20sd0o3gpt.jpg)
+<img src = "/images/old/5f6e3e27ly1fyoqxam6p5j20sd0o3gpt.jpg" />
 
 使用IDE还可以非常方便的查看历史记录、reset代码、合并分支、对比代码，但是命令行也是需要掌握的，毕竟有时候在服务器上面可木有图形化界面工具。。。
 

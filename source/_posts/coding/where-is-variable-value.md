@@ -31,7 +31,7 @@ category: 编程开发
 
 5.程序代码区 — 存放函数体（类成员函数和全局函数）的二进制代码。
 
-![栈堆](https://ww1.sinaimg.cn/mw690/5f6e3e27ly1fxehedktbwj20u70fn75i.jpg)
+<img src = "/images/old/5f6e3e27ly1fxehedktbwj20u70fn75i.jpg" />
 
 栈内存是有大小限制的，比如默认情况下，Linux平台的是8MB，如果超过这个限制，就会出现 **stackoverflow**，而堆内存并无限制，内存有多大就可以申请多大。
 

@@ -14,7 +14,7 @@ tags:
 
 举个例子，文字内容可能是这样：“主人，早上好，今天是2017年12月18号上午8点整，星期一”，这样的内容用PHP自带的几个时间函数就能搞定，然后拼接成字符文字！下面是一些简单实例代码：
 
-![PHP实现智能语音播报天气](https://upload-images.jianshu.io/upload_images/3571187-e38927d3c3b1ea69?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="/images/old/3571187-e38927d3c3b1ea69.jpeg" />
 
 <!--more-->
 
@@ -22,14 +22,14 @@ tags:
 
 举个例子，文字内容可能是这样：“今天天气多云转晴，温度5-15度，湿度80%，空气污染指数69”。要想找到一个靠谱而又免费的api还有点麻烦，很多免费的api提供的天气信息都比较简单，只有天气状况和温度，没有未来天气状况，最后我就找了个凑合用，谁有更好的api留个爪。实例代码如下：
 
-![PHP实现智能语音播报天气](https://upload-images.jianshu.io/upload_images/3571187-8637f3d6eb686b32?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="/images/old/3571187-8637f3d6eb686b32.jpeg" />
 
 
 第三步：语音合成
 
 这个是调用的百度的接口，首先呢，你得去百度那注册一个账号，获取开发者的key和secret，会有一些免费的调用次数，不拿去商用的话完全够了！然后下载百度提供的SDK，用法非常简单，实例代码如下：
 
-![PHP实现智能语音播报天气](https://upload-images.jianshu.io/upload_images/3571187-a4321ce7289a4ac4?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="/images/old/3571187-a4321ce7289a4ac4.jpeg" />
 
 大家可以看到最后的返回的内容被我存到/tmp/audio.mp3这个文件里面去了(这里使用的是Ubuntu系统)，这里可能会有一个写入权限问题，建议大家最后执行脚本的时候加上sudo。
 

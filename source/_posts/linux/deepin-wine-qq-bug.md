@@ -8,7 +8,7 @@ tags:
 
 之前写过一篇文章说在Linux下面使用deepin的wine QQ和微信, 虽然这个版本挺好用，但是一直以来有个bug困扰我：QQ和微信的图标都是wine的小图标，一模一样不说，还重叠在一起，当你使用 **ctrl+tab** 切换应用的时候很头疼，用过的人应该生有感受！
 
-![image](https://upload-images.jianshu.io/upload_images/3571187-9b36a691ddfe0a8b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="/images/old/3571187-9b36a691ddfe0a8b.jpg" />
 
 <!--more-->
 
@@ -33,7 +33,7 @@ MimeType=
 
 于是百度了一下，基本上找不到任何内容，只有一篇文章，点进去居然是404...还好有百度快照！
 
-![image](https://upload-images.jianshu.io/upload_images/3571187-65b3cf68d42da7b5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+<img src="/images/old/3571187-65b3cf68d42da7b5.jpg" />
 
 终于找到问题所在了，默认情况下，Linux是根据可执行文件的名称判定是属于哪个desktop文件配置的，大部分desktop文件的Exec配置的可执行文件刚好就是实际执行的文件名，所以很多没有StartupWMClass配置项。
 

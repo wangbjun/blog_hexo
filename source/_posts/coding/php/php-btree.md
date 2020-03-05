@@ -10,22 +10,22 @@ tags:
 
 之前讲过树，二叉树，二叉排序树，现在说说这个平衡二叉树，平衡二叉树是一个平衡的二叉排序树，关键在于平衡，它的意思是其中每一个节点的左子树和右子树的高度差不多都是1。
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvg1sihqxcj20p80es0wr.jpg)
+<img src = "/images/old/5f6e3e27ly1fvg1sihqxcj20p80es0wr.jpg" />
 
 为什么要平衡呢？还是为了提高查找速度，举个例子有一个数组 [3,2,1,4,5,6,7,10,9,8]，如果按照二叉排序树的算法生成之后应该是图1的结果，这样其实对于查找是不利的，举个例子，如果你要找节点8,
 你得找7次，但是如果是图2这种结构，则只需要3次。
 
 <!--more-->
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvg1zeac9nj20oa0a6tb6.jpg)
+<img src = "/images/old/5f6e3e27ly1fvg1zeac9nj20oa0a6tb6.jpg" />
 
 下面看一下图：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvgyvvo4xyj20lf09040f.jpg)
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvgyw55iwlj20ji091gn6.jpg)
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvgyw56ua0j20ob0giq78.jpg)
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvgyw57cblj20pn0jv0x8.jpg)
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fvgyw562xgj20o00hcn1w.jpg)
+<img src = "/images/old/5f6e3e27ly1fvgyvvo4xyj20lf09040f.jpg" />
+<img src = "/images/old/5f6e3e27ly1fvgyw55iwlj20ji091gn6.jpg" />
+<img src = "/images/old/5f6e3e27ly1fvgyw56ua0j20ob0giq78.jpg" />
+<img src = "/images/old/5f6e3e27ly1fvgyw57cblj20pn0jv0x8.jpg" />
+<img src = "/images/old/5f6e3e27ly1fvgyw562xgj20o00hcn1w.jpg" />
 
 最后贴一个PHP实现的代码：
 ### 树节点类:

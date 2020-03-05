@@ -19,7 +19,7 @@ Socket并不是一个协议，本质上说Socket是对 TCP/IP 协议的封装，
 
 下图展示了Socket在ISO模型里面大概位置：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g372hly7xkj20f20d8js4.jpg)
+<img src = "/images/old/5f6e3e27ly1g372hly7xkj20f20d8js4.jpg" />
 
 ## PHP Socket
 虽然PHP的强项是处理文本，一般用来写网页和http接口，但是官方依然提供了Socket扩展，编译PHP时在配置中添加--enable-sockets 配置项来启用，如果使用apt或yum安装，默认情况下是已启用。
@@ -28,7 +28,7 @@ Socket并不是一个协议，本质上说Socket是对 TCP/IP 协议的封装，
 
 咱们先看一幅图，关于TCP客户端和服务端之间的通信过程，咱们平时写http接口的时候并未做这么多工作，那是客户端给封装好了：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g371bhib22j20da0dn0t2.jpg)
+<img src = "/images/old/5f6e3e27ly1g371bhib22j20da0dn0t2.jpg" />
 
 
 ### 1.服务端代码
@@ -62,11 +62,11 @@ socket_close($sock);
 
 ===>服务端：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g373ivwa2ej20ls06274r.jpg)
+<img src = "/images/old/5f6e3e27ly1g373ivwa2ej20ls06274r.jpg" />
 
 ===>客户端：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g373k4ahoij20hw03cwem.jpg)
+<img src = "/images/old/5f6e3e27ly1g373k4ahoij20hw03cwem.jpg" />
 
 从这个例子里面我们可以看出来，curl发出是一个标准的http请求，实际上它的每一行后面是有\n的，在http协议里面，这几行文本其实是头（header）,但是在这个例子里面，对于我们来说，它就是一段文本而已，服务端只是把它的内容打印出来了,并没有去按照http协议去解析。虽然我们返回了```Hello World！\n```，但是这也并没有按照http协议的格式去做，缺少响应头。我只能说curl比较强大，如果使用浏览器访问的话会失败，提示```127.0.0.1 sent an invalid response```。
 
@@ -104,7 +104,7 @@ while (true) {
 ```
 摇身一变，就是一个http服务了，使用ab测了一下，并发上万，是不是有点小激动？
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g37ldkacn8j20l909twfu.jpg)
+<img src = "/images/old/5f6e3e27ly1g37ldkacn8j20l909twfu.jpg" />
 
 
 然而，之所以这么快是因为逻辑简单，假如你在while里面任何位置加一个 sleep(1) 你就会发现，原来这特么是串行的，一个个执行的，并不是并行，这段脚本一次只能处理一个请求！
@@ -308,7 +308,7 @@ while (true) {
 ```
 然后我使用了telnet连接服务端进行操作，运行效果如下，一个基于TCP长连接的网络版简易计算器：
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1g385x7u95fj20p50f1wfh.jpg)
+<img src = "/images/old/5f6e3e27ly1g385x7u95fj20p50f1wfh.jpg" />
 
 在这个例子，传参的“协议”稍微有点变化，只是为了更方便在telnet里面交互，但是很容易理解。这里面最关键是定义了一个全局变量用来存储连接资源描述符，然后通过select去监听变化,最后遍历整个数组，读取\写入数据！
 

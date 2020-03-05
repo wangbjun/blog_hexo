@@ -64,7 +64,7 @@ class SessionService
 
 在这种普通写法里面，当我们需要一个 sessionHandler 的时候我们是直接在构造函数里面实例化，这样没啥问题，确实解决了依赖问题。但是依赖注入的另一个词“注入”更强调的是一种从外部而来的，而不是内部。
 
-![](https://ww1.sinaimg.cn/large/5f6e3e27ly1fxq63pd6oej20ct0c03ze.jpg)
+<img src = "/images/old/5f6e3e27ly1fxq63pd6oej20ct0c03ze.jpg" />
 
 改造如下：
 
@@ -203,7 +203,7 @@ interface Store
 据我看到的，在laravel框架里面自带了至少5种实现，分别是Array、File、Database、Memcached、Redis, 如果你愿意你也可以自己去实现这个 Contracts，然后替换到框架里面的，不过框架本身实现的已经非常优秀了，除非你写的更好，一般情况下不需要这样做，但是laravel提供了这种可能。
 同样，在laravel框架里面session自带了Cache，Database，File这种几种实现，可以随意切换。
 
-![session](https://ww1.sinaimg.cn/large/5f6e3e27ly1fxq0xh7s02j20as0hiaaq.jpg)
+<img src = "/images/old/5f6e3e27ly1fxq0xh7s02j20as0hiaaq.jpg" />
 
 ---
 
