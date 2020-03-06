@@ -25,13 +25,13 @@ php > echo md5("12345");
 
 ```go
 func MD5(s string) string {
-	hash := md5.New()
-	_, err := hash.Write([]byte(s))
-	if err != nil {
-		panic(err)
-	}
-	sum := hash.Sum(nil)
-	return fmt.Sprintf("%x\n", sum)
+    hash := md5.New()
+    _, err := hash.Write([]byte(s))
+    if err != nil {
+        panic(err)
+    }
+    sum := hash.Sum(nil)
+    return fmt.Sprintf("%x\n", sum)
 }
 ```
 平时用到可能只是copy过来，没仔细看，今天来仔细看一下，首先，这个 md5.New() 返回的是一个结构体 digest：
@@ -52,18 +52,18 @@ func MD5(s string) string {
 ```go
 // Sum returns the MD5 checksum of the data.
 func Sum(data []byte) [Size]byte {
-	var d digest
-	d.Reset()
-	d.Write(data)
-	return d.checkSum()
+    var d digest
+    d.Reset()
+    d.Write(data)
+    return d.checkSum()
 }
 ```
 
 所以我们的方法可以简化为：
 ```go
 func MD5(s string) string {
-	sum := md5.Sum([]byte(s))
-	return fmt.Sprintf("%x\n", sum)
+    sum := md5.Sum([]byte(s))
+    return fmt.Sprintf("%x\n", sum)
 }
 ```
 当然sum变量在这２个方法里面都是多余的，可以简化为一行代码即可。
@@ -72,9 +72,9 @@ func MD5(s string) string {
 还有一种方式是使用io库的方法往里面写，主要是因为degest实现了**io.Writer**接口
 ```go
 func MD5(s string) string {
-	hash := md5.New()
-	_, _ = io.WriteString(hash, s)
-	return hex.EncodeToString(hash.Sum(nil))
+    hash := md5.New()
+    _, _ = io.WriteString(hash, s)
+    return hex.EncodeToString(hash.Sum(nil))
 }
 ```
 
@@ -84,9 +84,9 @@ func MD5(s string) string {
 这几种方式大同小异，理论上讲应该没有什么性能差距，不过既然Go自带Benchmark，我们就测一下吧：
 ```go
 func BenchmarkMD5(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		MD5("12345678901234567890")
-	}
+    for i := 0; i < b.N; i++ {
+        MD5("12345678901234567890")
+    }
 }
 ```
 结果如下：
@@ -107,17 +107,18 @@ ok      _/home/jwang/Documents/Work/learnGo/Std/md5     11.757s
 最终得出结论，性能最高的md5写法是这种，推荐大家使用：
 ```go
 func MD5(s string) string  {
-	sum := md5.Sum([]byte(s))
-	return hex.EncodeToString(sum[:])
+    sum := md5.Sum([]byte(s))
+    return hex.EncodeToString(sum[:])
 }
+
 ```
 
 ## 6.Sha1
 最后说个题外话，Go里面Sha1的写法和Md5几乎一致，只需要要把md5改成sha1即可：
 ```go
 func Sha1(s string) string  {
-	sum := sha1.Sum([]byte(s))
-	return hex.EncodeToString(sum[:])
+    sum := sha1.Sum([]byte(s))
+    return hex.EncodeToString(sum[:])
 }
 ```
 我也测了一下性能，它们之间的差距很小，md5是163ns/op，sha1是206ns/op，毕竟sha1比md5长一点。。。

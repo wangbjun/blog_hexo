@@ -59,19 +59,19 @@ time.Sleep(time.Second*1) # 表示睡眠1s
 package main
 
 import (
-	"sync"
+    "sync"
 )
 var wg = sync.WaitGroup{}
 
 func main() {
-	wg.Add(1)
-	go say("Hello World")
-	wg.Wait()
+    wg.Add(1)
+    go say("Hello World")
+    wg.Wait()
 }
 
 func say(s string) {
-	println(s)
-	wg.Done()
+    println(s)
+    wg.Done()
 }
 ```
 简单说明一下用法，var 是声明了一个全局变量 wg，类型是sync.WaitGroup，wg.add(1) 是说我有1个协程需要执行，wg.Done 相当于 wg.Add(-1) 意思就是我这个协程执行完了。wg.Wait() 就是告诉主线程要等一下，等协程都执行完再退出。
@@ -82,25 +82,24 @@ func say(s string) {
 package main
 
 import (
-	"strconv"
-	"sync"
+    "strconv"
+    "sync"
 )
 
 var wg = sync.WaitGroup{}
 
 func main() {
-	wg.Add(5)
-	for i := 0; i < 5; i++ {
-		go say("Hello World: " + strconv.Itoa(i))
-	}
-	wg.Wait()
+    wg.Add(5)
+    for i := 0; i < 5; i++ {
+        go say("Hello World: " + strconv.Itoa(i))
+    }
+    wg.Wait()
 }
 
 func say(s string) {
-	println(s)
-	wg.Done()
+    println(s)
+    wg.Done()
 }
-
 ```
 如果去掉go，直接在循环里面调用这个函数5次，毫无疑问会一次输出 Hello World: 0 ~ 4, 但是在协程里面，输出的顺序是无序的，看上去像是“同时执行”，其实这只是并发。
 
@@ -117,21 +116,21 @@ func say(s string) {
 package main
 
 import (
-	"runtime"
-	"strconv"
+    "runtime"
+    "strconv"
 )
 
 func main() {
-	runtime.GOMAXPROCS(1)
-	for i := 0; i < 5; i++ {
-		go say("Hello World: " + strconv.Itoa(i))
-	}
-	for {
-	}
+    runtime.GOMAXPROCS(1)
+    for i := 0; i < 5; i++ {
+        go say("Hello World: " + strconv.Itoa(i))
+    }
+    for {
+    }
 }
 
 func say(s string) {
-	println(s)
+    println(s)
 }
 ```
 默认情况下，最新的go版本协程可以利用多核CPU，但是通过runtime.GOMAXPROCS() 我们可以设置所需的核心数（其实并不是CPU核心数），在上面的例子我们设置为1，也就是模拟单核CPU，运行这段程序你会发现无任何输出，如果你改成2，你会发现可以正常输出。
@@ -141,8 +140,8 @@ func say(s string) {
 如果你在for循环里面加入一个sleep操作，比如下面这样：
 ```go
 for {
-		time.Sleep(time.Second)
-	}
+    time.Sleep(time.Second)
+}
 ```
 运行上面代码，你会发现居然可以正常输出，多次运行你会发现其结果一直是从0到4，变成顺序执行了！这也说明单核CPU只能并发，不能并行！
 
@@ -152,23 +151,22 @@ channel，又叫管道，在go里面的管道是协程之间通信的渠道，�
 package main
 
 import (
-	"strconv"
+    "strconv"
 )
 
 func main() {
-	var result = make(chan string)
-	for i := 0; i < 5; i++ {
-		go say("Hello World: "+strconv.Itoa(i), result)
-	}
-	for s := range result {
-		println(s)
-	}
+    var result = make(chan string)
+    for i := 0; i < 5; i++ {
+        go say("Hello World: "+strconv.Itoa(i), result)
+    }
+    for s := range result {
+        println(s)
+    }
 }
 
 func say(s string, c chan string) {
-	c <- s
+    c <- s
 }
-
 ```
 简单说明一下，这里就是实例化了一个string类型的管道，在调用函数的时候会把管道当作参数传递过去，然后在调用函数里面我们不输出结果，然后把结果通过管道返还回去，然后再主线程里面我们通过for range循环依次取出结果！
 
@@ -202,48 +200,47 @@ for s := range result {
 package main
 
 import (
-	"strconv"
-	"fmt"
-	"time"
+    "strconv"
+    "fmt"
+    "time"
 )
 
 func main() {
-	ch1 := make(chan int)
-	ch2 := make(chan string)
-	go pump1(ch1)
-	go pump2(ch2)
-	go suck(ch1, ch2)
-	time.Sleep(time.Duration(time.Second*30))
+    ch1 := make(chan int)
+    ch2 := make(chan string)
+    go pump1(ch1)
+    go pump2(ch2)
+    go suck(ch1, ch2)
+    time.Sleep(time.Duration(time.Second*30))
 }
 
 func pump1(ch chan int) {
-	for i := 0; ; i++ {
-		ch <- i * 2
-		time.Sleep(time.Duration(time.Second))
-	}
+    for i := 0; ; i++ {
+        ch <- i * 2
+        time.Sleep(time.Duration(time.Second))
+    }
 }
 
 func pump2(ch chan string) {
-	for i := 0; ; i++ {
-		ch <- strconv.Itoa(i+5)
-		time.Sleep(time.Duration(time.Second))
-	}
+    for i := 0; ; i++ {
+        ch <- strconv.Itoa(i+5)
+        time.Sleep(time.Duration(time.Second))
+    }
 }
 
 func suck(ch1 chan int, ch2 chan string) {
-	chRate := time.Tick(time.Duration(time.Second*5)) // 定时器
-	for {
-		select {
-		case v := <-ch1:
-			fmt.Printf("Received on channel 1: %d\n", v)
-		case v := <-ch2:
-			fmt.Printf("Received on channel 2: %s\n", v)
-		case <-chRate:
-			fmt.Printf("Log log...\n")
-		}
-	}
+    chRate := time.Tick(time.Duration(time.Second*5)) // 定时器
+    for {
+        select {
+        case v := <-ch1:
+            fmt.Printf("Received on channel 1: %d\n", v)
+        case v := <-ch2:
+            fmt.Printf("Received on channel 2: %s\n", v)
+        case <-chRate:
+            fmt.Printf("Log log...\n")
+        }
+    }
 }
-
 ```
 输出结果如下：
 ```
@@ -272,9 +269,10 @@ Received on channel 1: 14
 使用go自带的http库几行代码就可以启动一个http server，代码如下：
 ```go
 http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
-		_, _ = fmt.Fprintln(writer, "Hello World")
-	})
-	_ = http.ListenAndServe("127.0.0.1:8080", nil)
+        _, _ = fmt.Fprintln(writer, "Hello World")
+    })
+
+_ = http.ListenAndServe("127.0.0.1:8080", nil)
 ```
 虽然简单，但是非常高效，因为其底层使用了go协程，对于每一个请求都会启动一个协程去处理，所以并发可以轻轻松松达到上万QPS。
 

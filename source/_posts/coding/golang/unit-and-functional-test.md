@@ -27,26 +27,26 @@ package main
 import "errors"
 
 func Div(a, b int) (int, error) {
-	if b == 0 {
-		return 0, errors.New("division by zero")
-	}
-	return a / b, nil
+    if b == 0 {
+        return 0, errors.New("division by zero")
+    }
+    return a / b, nil
 }
 ```
 如果想测试这个文件，那么测试文件名字就应该叫 math_test.go
 ```go
 package main
 import (
-	"testing"
+    "testing"
 )
 func TestDiv(t *testing.T) {
-	i, err := Div(4, 2)
-	if err != nil {
-		t.Fail()
-	}
-	if i != 2 {
-		t.Fail()
-	}
+    i, err := Div(4, 2)
+    if err != nil {
+        t.Fail()
+    }
+    if i != 2 {
+        t.Fail()
+    }
 }
 ```
 切换到工作目录下执行 ```go test```即可，这个命令有很多附加参数，比如说```-v```可以查看详细情况，```-coverprofile```可以看测试覆盖率。
@@ -67,21 +67,21 @@ ok      _/home/jwang/Documents/Work/test       0.001s
 ```go
 package main
 import (
-	"testing"
+    "testing"
 )
 func TestDiv(t *testing.T) {
-	i, err := Div(4, 2)
-	if err != nil {
-		t.Fail()
-	}
-	if i != 2 {
-		t.Fail()
-	}
+    i, err := Div(4, 2)
+    if err != nil {
+        t.Fail()
+    }
+    if i != 2 {
+        t.Fail()
+    }
 
-	i, err = Div(4, 0)
-	if err == nil {
-		t.Fail()
-	}
+    i, err = Div(4, 0)
+    if err == nil {
+        t.Fail()
+    }
 }
 ```
 重新执行```go test```会发现覆盖率达到了100%，也就是所有语句都覆盖到。
@@ -94,27 +94,27 @@ func TestDiv(t *testing.T) {
 package main
 
 import (
-	"testing"
+    "testing"
 )
 func TestDiv(t *testing.T) {
-	var tests = []struct {
-		a        int
-		b        int
-		expected int
-		err      error
-	}{
-		{4, 2, 2, nil},
-		{4, 1, 4, nil},
-		{5, 2, 2, nil},
-		{4, 0, 0, DivisionByZeroError},
-	}
+    var tests = []struct {
+        a        int
+        b        int
+        expected int
+        err      error
+    }{
+        {4, 2, 2, nil},
+        {4, 1, 4, nil},
+        {5, 2, 2, nil},
+        {4, 0, 0, DivisionByZeroError},
+    }
 
-	for _, v := range tests {
-		i, err := Div(v.a, v.b)
-		if i != v.expected || err != v.err {
-			t.Errorf("input %d, %d, expected %d, got %d", v.a, v.b, v.expected, i)
-		}
-	}
+    for _, v := range tests {
+        i, err := Div(v.a, v.b)
+        if i != v.expected || err != v.err {
+            t.Errorf("input %d, %d, expected %d, got %d", v.a, v.b, v.expected, i)
+        }
+    }
 }
 ```
 这种方式比较简洁，参数一目了然，而且方便扩展添加新的用例，这里需要注意一下那个error，可以先定义一个自定义的error方便判断，同时使用了```t.Errorf```格式化入参和出参方便排查错误。
@@ -129,28 +129,28 @@ func TestDiv(t *testing.T) {
 package main
 
 import (
-	"net/http"
-	"strconv"
+    "net/http"
+    "strconv"
 )
 
 func main() {
-	http.HandleFunc("/div", DivHandler)
-	_ = http.ListenAndServe(":8888", nil)
+    http.HandleFunc("/div", DivHandler)
+    _ = http.ListenAndServe(":8888", nil)
 }
 
 func DivHandler(writer http.ResponseWriter, request *http.Request)  {
-	a := request.PostFormValue("a")
-	b := request.PostFormValue("b")
+    a := request.PostFormValue("a")
+    b := request.PostFormValue("b")
 
-	paramA, _ := strconv.Atoi(a)
-	paramB, _ := strconv.Atoi(b)
+    paramA, _ := strconv.Atoi(a)
+    paramB, _ := strconv.Atoi(b)
 
-	i, err := Div(paramA, paramB)
-	if err != nil {
-		_, _ = writer.Write([]byte("error"))
-		return
-	}
-	_, _ = writer.Write([]byte(strconv.Itoa(i)))
+    i, err := Div(paramA, paramB)
+    if err != nil {
+        _, _ = writer.Write([]byte("error"))
+        return
+    }
+    _, _ = writer.Write([]byte(strconv.Itoa(i)))
 }
 ```
 
@@ -161,34 +161,34 @@ func DivHandler(writer http.ResponseWriter, request *http.Request)  {
 package main
 
 import (
-	"io/ioutil"
-	"net/http"
-	"net/http/httptest"
-	"net/url"
-	"strings"
-	"testing"
+    "io/ioutil"
+    "net/http"
+    "net/http/httptest"
+    "net/url"
+    "strings"
+    "testing"
 )
 
 func TestDivHandler(t *testing.T)  {
-	recorder := httptest.NewRecorder()
+    recorder := httptest.NewRecorder()
 
-	params := url.Values{}
-	params.Add("a", "42")
-	params.Add("b", "2")
+    params := url.Values{}
+    params.Add("a", "42")
+    params.Add("b", "2")
 
-	request, _ := http.NewRequest("POST", "/div", strings.NewReader(params.Encode()))
-	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+    request, _ := http.NewRequest("POST", "/div", strings.NewReader(params.Encode()))
+    request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
-	DivHandler(recorder, request)
+    DivHandler(recorder, request)
 
-	if recorder.Result().StatusCode != 200 {
-		t.Error("Test failed")
-	}
+    if recorder.Result().StatusCode != 200 {
+        t.Error("Test failed")
+    }
 
-	body, _ := ioutil.ReadAll(recorder.Result().Body)
-	if string(body) != "21" {
-		t.Error("Test failed")
-	}
+    body, _ := ioutil.ReadAll(recorder.Result().Body)
+    if string(body) != "21" {
+        t.Error("Test failed")
+    }
 }
 ```
 在这个测试用例里面，我主要测试了2点，一个是返回码是不是200，另外测试了一下正常的返回结果。不过很明显，我这里并没有覆盖到异常情况。

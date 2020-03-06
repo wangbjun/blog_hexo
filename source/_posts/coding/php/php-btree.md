@@ -59,182 +59,182 @@ class Node
 ### 左旋和右旋
 
 ```php
-    /**
-     * 对以p为根的二叉排序树作右旋处理
-     * 处理之后p指向新的树根节点，即旋转处理之前的左子树的树节点
-     * @param $p Node
-     */
-    public function RRotate(Node &$p)
-    {
-        $l = $p->leftNode;
+/**
+ * 对以p为根的二叉排序树作右旋处理
+ * 处理之后p指向新的树根节点，即旋转处理之前的左子树的树节点
+ * @param $p Node
+ */
+public function RRotate(Node &$p)
+{
+    $l = $p->leftNode;
 
-        $p->leftNode = $l->rightNode;
+    $p->leftNode = $l->rightNode;
 
-        $l->rightNode = $p;
+    $l->rightNode = $p;
 
-        $p = $l;
-    }
+    $p = $l;
+}
 
-    /**
-     * 对以p为根的二叉排序树作左旋处理
-     * 处理之后p指向新的树根节点，即旋转处理之前的右子树的树节点
-     * @param $p Node
-     */
-    public function LRotate(Node &$p)
-    {
-        $r = $p->rightNode;
+/**
+ * 对以p为根的二叉排序树作左旋处理
+ * 处理之后p指向新的树根节点，即旋转处理之前的右子树的树节点
+ * @param $p Node
+ */
+public function LRotate(Node &$p)
+{
+    $r = $p->rightNode;
 
-        $p->rightNode = $r->leftNode;
+    $p->rightNode = $r->leftNode;
 
-        $r->leftNode = $p;
+    $r->leftNode = $p;
 
-        $p = $r;
-    }
+    $p = $r;
+}
 ```
 ### 左平衡旋转和右平衡旋转
 
 ```php
-    /**
-     * 左平衡旋转
-     * @param $root Node
-     */
-    public function leftBalance(Node &$root)
-    {
-        $l = $root->leftNode;
+/**
+ * 左平衡旋转
+ * @param $root Node
+ */
+public function leftBalance(Node &$root)
+{
+    $l = $root->leftNode;
 
-        switch ($l->bf) {
-            case EH:
-                $l->bf    = RH;
-                $root->bf = LH;
-                self::RRotate($root);
-                break;
-            case LH:
-                $root->bf = $l->bf = EH;
-                self::RRotate($root);
-                break;
-            case RH:
-                $lr = $l->rightNode;
-                switch ($lr->bf) {
-                    case LH:
-                        $root->bf = RH;
-                        $l->bf    = EH;
-                        break;
-                    case EH:
-                        $root->bf = $l->bf = EH;
-                        break;
-                    case RH:
-                        $root->bf = EH;
-                        $l->bf    = LH;
-                        break;
-                }
-                $lr->bf = EH;
-                self::LRotate($root->leftNode);
-                self::RRotate($root);
-        }
+    switch ($l->bf) {
+        case EH:
+            $l->bf    = RH;
+            $root->bf = LH;
+            self::RRotate($root);
+            break;
+        case LH:
+            $root->bf = $l->bf = EH;
+            self::RRotate($root);
+            break;
+        case RH:
+            $lr = $l->rightNode;
+            switch ($lr->bf) {
+                case LH:
+                    $root->bf = RH;
+                    $l->bf    = EH;
+                    break;
+                case EH:
+                    $root->bf = $l->bf = EH;
+                    break;
+                case RH:
+                    $root->bf = EH;
+                    $l->bf    = LH;
+                    break;
+            }
+            $lr->bf = EH;
+            self::LRotate($root->leftNode);
+            self::RRotate($root);
     }
+}
 
-    /**
-     * 右平衡旋转
-     * @param $root Node
-     */
-    public function rightBalance(Node &$root)
-    {
-        $r = $root->rightNode;
+/**
+ * 右平衡旋转
+ * @param $root Node
+ */
+public function rightBalance(Node &$root)
+{
+    $r = $root->rightNode;
 
-        switch ($r->bf) {
-            case RH:
-                $root->bf = $r->bf = EH;
-                self::LRotate($root);
-                break;
-            case EH:
-                $root->bf = RH;
-                $r->bf    = LH;
-                self::LRotate($root);
-                break;
-            case LH:
-                $rl = $r->leftNode;
-                switch ($rl->bf) {
-                    case EH:
-                        $root->bf = $r->bf = EH;
-                        break;
-                    case RH:
-                        $root->bf = LH;
-                        $rl->bf   = EH;
-                        break;
-                    case LH:
-                        $root->bf = EH;
-                        $r->bf    = RH;
-                        break;
-                }
-                $rl->bf = EH;
-                self::RRotate($root->rightNode);
-                self::LRotate($root);
-                break;
-        }
+    switch ($r->bf) {
+        case RH:
+            $root->bf = $r->bf = EH;
+            self::LRotate($root);
+            break;
+        case EH:
+            $root->bf = RH;
+            $r->bf    = LH;
+            self::LRotate($root);
+            break;
+        case LH:
+            $rl = $r->leftNode;
+            switch ($rl->bf) {
+                case EH:
+                    $root->bf = $r->bf = EH;
+                    break;
+                case RH:
+                    $root->bf = LH;
+                    $rl->bf   = EH;
+                    break;
+                case LH:
+                    $root->bf = EH;
+                    $r->bf    = RH;
+                    break;
+            }
+            $rl->bf = EH;
+            self::RRotate($root->rightNode);
+            self::LRotate($root);
+            break;
     }
+}
 ```
 
 最后是插入算法：
 ```php
-    public function insertAvl(&$root, int $key, string $data, bool &$taller = false)
-    {
-        if (!$root) {
-            $root           = new Node($key, $data);
-            $root->leftNode = $root->rightNode = null;
-            $root->bf       = EH;
-            $taller         = true;
-            return true;
-        } else {
-            if ($key == $root->key) {
-                $taller = false;
+public function insertAvl(&$root, int $key, string $data, bool &$taller = false)
+{
+    if (!$root) {
+        $root           = new Node($key, $data);
+        $root->leftNode = $root->rightNode = null;
+        $root->bf       = EH;
+        $taller         = true;
+        return true;
+    } else {
+        if ($key == $root->key) {
+            $taller = false;
+            return false;
+        }
+
+        if ($key < $root->key) {
+            //在左子树中搜索
+            if (!self::insertAvl($root->leftNode, $key, $data, $taller)) {
                 return false;
             }
-
-            if ($key < $root->key) {
-                //在左子树中搜索
-                if (!self::insertAvl($root->leftNode, $key, $data, $taller)) {
-                    return false;
+            if ($taller) {
+                switch ($root->bf) { //检查树的平衡度
+                    case LH:
+                        self::leftBalance($root);
+                        $taller = false;
+                        break;
+                    case EH:
+                        $root->bf = LH;
+                        $taller   = true;
+                        break;
+                    case RH:
+                        $root->bf = EH;
+                        $taller   = false;
+                        break;
                 }
-                if ($taller) {
-                    switch ($root->bf) { //检查树的平衡度
-                        case LH:
-                            self::leftBalance($root);
-                            $taller = false;
-                            break;
-                        case EH:
-                            $root->bf = LH;
-                            $taller   = true;
-                            break;
-                        case RH:
-                            $root->bf = EH;
-                            $taller   = false;
-                            break;
-                    }
-                }
-            } else {
-                //在右子树中搜索
-                if (!self::insertAvl($root->rightNode, $key, $data, $taller)) {
-                    return false;
-                }
-                if ($taller) {
-                    switch ($root->bf) { //检查树的平衡度
-                        case LH:
-                            $root->bf = EH;
-                            $taller   = false;
-                            break;
-                        case EH:
-                            $root->bf = RH;
-                            $taller   = true;
-                            break;
-                        case RH:
-                            self::rightBalance($root);
-                            $taller = false;
-                            break;
-                    }
+            }
+        } else {
+            //在右子树中搜索
+            if (!self::insertAvl($root->rightNode, $key, $data, $taller)) {
+                return false;
+            }
+            if ($taller) {
+                switch ($root->bf) { //检查树的平衡度
+                    case LH:
+                        $root->bf = EH;
+                        $taller   = false;
+                        break;
+                    case EH:
+                        $root->bf = RH;
+                        $taller   = true;
+                        break;
+                    case RH:
+                        self::rightBalance($root);
+                        $taller = false;
+                        break;
                 }
             }
         }
-
-        return true;
     }
+
+    return true;
+}
 ```

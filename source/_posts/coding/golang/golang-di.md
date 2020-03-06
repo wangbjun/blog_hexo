@@ -27,11 +27,11 @@ package Object
 import "fmt"
 
 type DB struct {
-	config string
+    config string
 }
 
 func (DB) Get() {
-	fmt.Println("I am DB")
+    fmt.Println("I am DB")
 }
 ```
 
@@ -44,7 +44,7 @@ import "fmt"
 type Redis struct{}
 
 func (Redis) Get() {
-	fmt.Println("I am Redis")
+    fmt.Println("I am Redis")
 }
 ```
 App:
@@ -54,14 +54,14 @@ package Object
 import "fmt"
 
 type App struct {
-	r  Redis
-	db DB
+    r  Redis
+    db DB
 }
 
 func (p App) Work() {
-	fmt.Println("I can work")
-	p.db.Get()
-	p.r.Get()
+    fmt.Println("I can work")
+    p.db.Get()
+    p.r.Get()
 }
 ```
 如果不使用依赖注入，我们只能手动解决依赖，代码如下：
@@ -71,11 +71,11 @@ package main
 import "di/Object"
 
 func main() {
-	app := Object.App{
-		R:  Object.Redis{},
-		DB: Object.DB{},
-	}
-	app.Work()
+    app := Object.App{
+        R:  Object.Redis{},
+        DB: Object.DB{},
+    }
+    app.Work()
 }
 ```
 这种写法并无太大问题，简单安全，不过项目非常大的时候，对象之间依赖关系复杂，手动解决依赖可能非常麻烦，这时候就需要自动注入依赖了。
@@ -95,8 +95,8 @@ func main() {
 下面以App为例：
 ```go
 type App struct {
-	R  Redis `inject:""`
-	DB DB `inject:""`
+    R  Redis `inject:""`
+    DB DB `inject:""`
 }
 ```
 运行：
@@ -104,24 +104,24 @@ type App struct {
 package main
 
 import (
-	"di/Object"
-	"github.com/facebookgo/inject"
+    "di/Object"
+    "github.com/facebookgo/inject"
 )
 
 func main() {
-	var g inject.Graph
+    var g inject.Graph
 
-	var app Object.App
+    var app Object.App
 
-	_ = g.Provide(
-		&inject.Object{Value: &Object.DB{},},
-		&inject.Object{Value: &Object.Redis{},},
-		&inject.Object{Value: &app,
-		})
+    _ = g.Provide(
+        &inject.Object{Value: &Object.DB{},},
+        &inject.Object{Value: &Object.Redis{},},
+        &inject.Object{Value: &app,
+        })
 
-	_ = g.Populate()
+    _ = g.Populate()
 
-	app.Work()
+    app.Work()
 }
 ```
 给struct tag只是第一步，在程序启动的时候需要先注入依赖。

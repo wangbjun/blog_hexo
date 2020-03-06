@@ -11,37 +11,37 @@ tags:
 
 ## 底层实现
 PHP的数组底层是使用HashTable实现，说到哈希表估计很多人都了解过，PHP数组通过一个映射函数把key映射到对于的value值上面，所以查找起来非常快，时间复杂度是O(1),哈希表都会遇到冲突问题，在PHP里面是通过链表的方式解决的。
-```
+```php
 //Bucket：散列表中存储
 typedef struct _Bucket {
-	zval              val;  //存储的具体value，这里嵌入了一个zval，而不是一个指针
-	zend_ulong        h;    //key根据times 33计算得到的哈希值，或者是数值索引编号
-	zend_string      *key;  //存储元素的key
+    zval              val;  //存储的具体value，这里嵌入了一个zval，而不是一个指针
+    zend_ulong        h;    //key根据times 33计算得到的哈希值，或者是数值索引编号
+    zend_string      *key;  //存储元素的key
 } Bucket;
  
 //HashTable结构
 typedef struct _zend_array HashTable;
  
 struct _zend_array {
-	zend_refcounted_h gc;
-	union {
-		struct {
-			ZEND_ENDIAN_LOHI_4(
-				zend_uchar    flags,
-				zend_uchar    nApplyCount,
-				zend_uchar    nIteratorsCount,
-				zend_uchar    reserve)
-		} v;
-		uint32_t flags;
-	} u;
-	uint32_t          nTableMask;      //哈希值计算掩码，等于nTableSize的负值(nTableMask = -nTableSize)
-	Bucket            *arData;         //存储元素数组，指向第一个Bucket
-	uint32_t          nNumUsed;        //已用Bucket数
-	uint32_t          nNumOfElements;  //哈希表有效元素数
-	uint32_t          nTableSize;      //哈希表总大小，为2的n次方
-	uint32_t          nInternalPointer;
-	zend_long         nNextFreeElement;  ////下一个可用的数值索引,如:arr[] = 1;arr["a"] = 2;arr[] = 3;则nNextFreeElement = 2;
-	dtor_func_t       pDestructor;
+    zend_refcounted_h gc;
+    union {
+        struct {
+            ZEND_ENDIAN_LOHI_4(
+                zend_uchar    flags,
+                zend_uchar    nApplyCount,
+                zend_uchar    nIteratorsCount,
+                zend_uchar    reserve)
+        } v;
+        uint32_t flags;
+    } u;
+    uint32_t          nTableMask;      //哈希值计算掩码，等于nTableSize的负值(nTableMask = -nTableSize)
+    Bucket            *arData;         //存储元素数组，指向第一个Bucket
+    uint32_t          nNumUsed;        //已用Bucket数
+    uint32_t          nNumOfElements;  //哈希表有效元素数
+    uint32_t          nTableSize;      //哈希表总大小，为2的n次方
+    uint32_t          nInternalPointer;
+    zend_long         nNextFreeElement;  ////下一个可用的数值索引,如:arr[] = 1;arr["a"] = 2;arr[] = 3;则nNextFreeElement = 2;
+    dtor_func_t       pDestructor;
 
 ```
 

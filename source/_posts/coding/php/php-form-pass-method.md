@@ -14,13 +14,13 @@ tags:
 ### 前端代码
 ```
 <body>
-    <form action="backend.php" method="post">
-        <label for="name">姓名:</label>
-        <input type="text" id="name" name="name">
-        <label for="name">年龄:</label>
-        <input type="text" id="age" name="age">
-        <input type="submit" value="提交">
-    </form>
+<form action="backend.php" method="post">
+    <label for="name">姓名:</label>
+    <input type="text" id="name" name="name">
+    <label for="name">年龄:</label>
+    <input type="text" id="age" name="age">
+    <input type="submit" value="提交">
+</form>
 </body>
 ```
 
@@ -45,19 +45,19 @@ var_dump($_REQUEST['age]);
 这种形式，需要设置一下请求头Content-Type为application/json，实例如下：
 ### 前端代码
 ```
- $.ajax({
-            type: 'POST',
-            url: "backend.php",
-            data: {
-                'name': 'hello',
-                'age': 15,
-            },
-            contentType: 'application/json',
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-            }
-        });
+$.ajax({
+    type: 'POST',
+    url: "backend.php",
+    data: {
+        'name': 'hello',
+        'age': 15,
+    },
+    contentType: 'application/json',
+    dataType: "json",
+    success: function (data) {
+        console.log(data);
+    }
+});
 ```
 ### 请求头
 
@@ -69,20 +69,20 @@ $input = file_get_contents('php://input');
 ```
 上面这种方式获取到的内容是字符串: name=Jun&age=15，在这个例子里面反而不容易处理了，实际上采用json这种方式提交的参数的话，一般都是把需要的数据封装成json格式提交，在js里面就是把数据放到对象里面，然后序列化：
 ```
-        var data = {
-            'name': 'Jun',
-            'age': 15,
-        };
-        $.ajax({
-            type: 'POST',
-            url: "backend.php",
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-            }
-        });
+var data = {
+    'name': 'Jun',
+    'age': 15,
+};
+$.ajax({
+    type: 'POST',
+    url: "backend.php",
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    dataType: "json",
+    success: function (data) {
+        console.log(data);
+    }
+});
 ```
 这是再查看请求头：
 

@@ -20,7 +20,7 @@ tags:
 ### 二.匿名函数
 
 这个我相信大家都多多少少用过，看一下代码：
-```
+```php
 $f = function () {
     $a = 1;
     $b = 2;
@@ -88,7 +88,7 @@ function sum($arr)
 var_dump(sum($arr));
 ```
 代码里面使用了 array_reduce 这个函数求一个数组的和，但是，如果不需要立刻求和，而是在后面的代码中，根据需要再计算怎么办？可以不返回求和的结果，而是返回求和的函数！
-```
+```php
 function lazySum($arr)
 {
     return function () use ($arr) {
@@ -105,7 +105,7 @@ var_dump($sum());
 ---
 
 有一道面试题就涉及到了闭包的特性：
-```
+```php
 function plus()
 {
     $funcArr = [];
@@ -129,7 +129,7 @@ plus 函数会返回3个闭包函数，然后依次调用这个几个函数, 有
 ### 四.闭包在PHP框架里面使用
 
 1.一个是IOC容器
-```
+```php
 <?php
 
 /**
@@ -181,7 +181,7 @@ $talk->greet(Container::make('foo'));
 
 
 2.闭包路由
-```
+```php
 /**
  * 演示闭包的使用,路由
  * Class App

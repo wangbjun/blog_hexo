@@ -127,57 +127,57 @@ $tree->insert(18, 'Where');
 ### 2.查找
 二叉树的结构生成了，如果查找呢？查找其实还算简单的，也是从根节点开始递归遍历, 判断根节点的key是否等于需要查找的key，如果不等于判断是大还是获取其子树节点：
 `````php
-    public function find($key)
-    {
-        $current = $this->root;
-        while ($key != $current->key) {
-            if ($key > $current->key) {
-                $current = $current->rightNode;
-            } else {
-                $current = $current->leftNode;
-            }
-            if ($current == null) {
-                return null;
-            }
+public function find($key)
+{
+    $current = $this->root;
+    while ($key != $current->key) {
+        if ($key > $current->key) {
+            $current = $current->rightNode;
+        } else {
+            $current = $current->leftNode;
         }
-
-        return $current;
+        if ($current == null) {
+            return null;
+        }
     }
+
+    return $current;
+}
 `````
 ### 3.翻转
 然后再看看翻转二叉树：
 `````php
-    public function inverse($root)
-    {
-        if ($root == null) {
-            return null;
-        }
-        $tmp = $root->leftNode;
-
-        $root->leftNode  = $this->inverse($root->rightNode);
-        $root->rightNode = $this->inverse($tmp);
-
-        return $root;
+public function inverse($root)
+{
+    if ($root == null) {
+        return null;
     }
+    $tmp = $root->leftNode;
+
+    $root->leftNode  = $this->inverse($root->rightNode);
+    $root->rightNode = $this->inverse($tmp);
+
+    return $root;
+}
 `````
 翻转有很多种算法，我这里只写了一个最简单的递归算法，比较容易理解！
 
 ### 4.遍历
 二叉树遍历又分为前序遍历，中序遍历，以及后序遍历，其实没啥区别，区别就在于 echo 那行输出节点的代码位置，这里用的还是递归算法：
 `````php
-    /**
-     * 前序遍历算法
-     * @param $node
-     */
-    public function preOrderTraverse($node)
-    {
-        if ($node == null) {
-            return;
-        }
-        
-        echo $node->key . '--->' . $node->data . "\n";
-        
-        $this->preOrderTraverse($node->leftNode);
-        $this->preOrderTraverse($node->rightNode);
+/**
+ * 前序遍历算法
+ * @param $node
+ */
+public function preOrderTraverse($node)
+{
+    if ($node == null) {
+        return;
     }
+    
+    echo $node->key . '--->' . $node->data . "\n";
+    
+    $this->preOrderTraverse($node->leftNode);
+    $this->preOrderTraverse($node->rightNode);
+}
 `````

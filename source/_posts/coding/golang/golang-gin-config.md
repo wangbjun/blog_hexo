@@ -12,42 +12,42 @@ category: 编程开发
 
 <!--more-->
 
-```
+```go
 package config
 
 import (
-	"gopkg.in/ini.v1"
-	"log"
-	"os"
+    "gopkg.in/ini.v1"
+    "log"
+    "os"
 )
 
 var Conf Config
 
 type Config struct {
-	App      App
+    App      App
 }
 
 type App struct {
-	Port    string
-	Debug   string
-	Url     string
-	LogFile string
+    Port    string
+    Debug   string
+    Url     string
+    LogFile string
 }
 
 func init() {
-	envFile := "app.ini"
-	conf, err := ini.Load(envFile)
-	if err != nil {
-		log.Panicf("parse conf file [%s] failed, err: %s", envFile, err.Error())
-	}
-	sectionApp := conf.Section("APP")
-	Conf.App = App{
-		Port:    sectionApp.Key("PORT").String(),
-		Debug:   sectionApp.Key("DEBUG").String(),
-		Url:     sectionApp.Key("URL").String(),
-		LogFile: sectionApp.Key("LOG_FILE").String(),
-	}
-	log.Println("init config file success")
+    envFile := "app.ini"
+    conf, err := ini.Load(envFile)
+    if err != nil {
+        log.Panicf("parse conf file [%s] failed, err: %s", envFile, err.Error())
+    }
+    sectionApp := conf.Section("APP")
+    Conf.App = App{
+        Port:    sectionApp.Key("PORT").String(),
+        Debug:   sectionApp.Key("DEBUG").String(),
+        Url:     sectionApp.Key("URL").String(),
+        LogFile: sectionApp.Key("LOG_FILE").String(),
+    }
+    log.Println("init config file success")
 }
 ```
 默认情况下，入口文件main.go文件都是位于项目根目录下面，和app.ini文件同级，所以这种写法完全没问题。
@@ -56,7 +56,7 @@ func init() {
 但是当你跑测试用例的时候，而且当这个测试用例并不在项目根目录的时候就会产生问题: 找不到配置文件。
 
 原因很简单，Go的测试用例最佳实践是和被测试的文件放在一起，所以测试文件可能在二级、三级甚至多级目录里面，如下图：
-```
+```bash
 ├── app.ini
 ├── config
 │   ├── Config.go
@@ -87,19 +87,19 @@ func init() {
 - 跑测试的时候传入外部参数，依然不够灵活，而且麻烦
 
 这个问题，我思考了很久，最终想了一个足够简单灵活的方式，代码如下：
-```
+```go
 envFile := "app.ini"
 // 读取配置文件, 解决跑测试的时候找不到配置文件的问题，最多往上找5层目录
 for i := 0; i < 5; i++ {
-	if _, err := os.Stat(envFile); err == nil {
-		break
-	} else {
-		envFile = "../" + envFile
-	}
+    if _, err := os.Stat(envFile); err == nil {
+        break
+    } else {
+        envFile = "../" + envFile
+    }
 }
 conf, err := ini.Load(envFile)
 if err != nil {
-	log.Panicf("parse conf file [%s] failed, err: %s", envFile, err.Error())
+    log.Panicf("parse conf file [%s] failed, err: %s", envFile, err.Error())
 }
 ```
 使用一个for循环解决了这个问题，如果怕不够保险，可以改成10，大多数项目目录应该不会这么深，虽然不够优雅，但是还是相对比较简单的。

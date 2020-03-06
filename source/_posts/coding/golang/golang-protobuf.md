@@ -86,47 +86,47 @@ protoc --go_out=. person.proto
 package main
 
 import (
-	"fmt"
-	"github.com/golang/Protobuf/proto"
-	"io/ioutil"
-	"os"
+    "fmt"
+    "github.com/golang/Protobuf/proto"
+    "io/ioutil"
+    "os"
 )
 
 func main() {
         //实例化模型对象，填充数据
-	p := &Person{
-		Id:    1,
-		Name:  "jun",
-		Age:   25,
-		Money: 24.5,
-		Car:   []string{"car1", "car2"},
-		Phone: &Person_Phone{Number: "0551-12323232", Type: "1"},
-		Sex:   Person_female,
-	}
+    p := &Person{
+        Id:    1,
+        Name:  "jun",
+        Age:   25,
+        Money: 24.5,
+        Car:   []string{"car1", "car2"},
+        Phone: &Person_Phone{Number: "0551-12323232", Type: "1"},
+        Sex:   Person_female,
+    }
 
-	//Marshal序列化
-	out, err := proto.Marshal(p)
-	if err != nil {
-		panic(err)
-	}
+    //Marshal序列化
+    out, err := proto.Marshal(p)
+    if err != nil {
+        panic(err)
+    }
         //序列化得到结果是二进制的，是不可读的，所以这里保存到文件
-	file, _ := os.OpenFile("out", os.O_CREATE|os.O_WRONLY, 0666)
-	_, _ = file.Write(out)
-	_ = file.Close()
+    file, _ := os.OpenFile("out", os.O_CREATE|os.O_WRONLY, 0666)
+    _, _ = file.Write(out)
+    _ = file.Close()
 
-	//unMarshal还原数据，从文件里面读取
-	in, _ := os.Open("out")
-	bytes, err := ioutil.ReadAll(in)
-	if err != nil {
-		panic(err)
-	}
-	p1 := &Person{}
-	err = proto.Unmarshal(bytes, p1)
-	if err != nil {
-		panic(err)
-	}
+    //unMarshal还原数据，从文件里面读取
+    in, _ := os.Open("out")
+    bytes, err := ioutil.ReadAll(in)
+    if err != nil {
+        panic(err)
+    }
+    p1 := &Person{}
+    err = proto.Unmarshal(bytes, p1)
+    if err != nil {
+        panic(err)
+    }
         //调用string()方法打印，也可以使用其生成的getter函数
-	fmt.Printf("%s\n", p1.String())
+    fmt.Printf("%s\n", p1.String())
         fmt.Printf("%d\n", p1.GetId)
 }
 ```
@@ -142,65 +142,65 @@ message Group {
 }
 ```
 分别测试有1,10,100个对象的时候对比情况，测试代码如下：
-```
+```go
 func BenchmarkProto(b *testing.B) {
-	g := &Group{}
-	for i := 0; i < 100; i++ {
-		p := &Person{
-			Id:    int32(i),
-			Name:  "测试名称",
-			Age:   int32(25 * i),
-			Money: 240000.5,
-			Car:   []string{"car1", "car2", "car3", "car4", "car5", "car7", "car6", "car21", "car22",},
-			Phone: &Person_Phone{Number: "0551-12323232", Type: "1"},
-			Sex:   Person_female,
-		}
-		g.Person = append(g.Person, p)
-	}
-	b.ResetTimer()
+    g := &Group{}
+    for i := 0; i < 100; i++ {
+        p := &Person{
+            Id:    int32(i),
+            Name:  "测试名称",
+            Age:   int32(25 * i),
+            Money: 240000.5,
+            Car:   []string{"car1", "car2", "car3", "car4", "car5", "car7", "car6", "car21", "car22",},
+            Phone: &Person_Phone{Number: "0551-12323232", Type: "1"},
+            Sex:   Person_female,
+        }
+        g.Person = append(g.Person, p)
+    }
+    b.ResetTimer()
         b.N = 1000
-	for i := 0; i < b.N; i++ {
-		out, err := proto.Marshal(g)
-		if err != nil {
-			panic(err)
-		}
+    for i := 0; i < b.N; i++ {
+        out, err := proto.Marshal(g)
+        if err != nil {
+            panic(err)
+        }
 
-		g1 := &Group{}
-		err = proto.Unmarshal(out, g1)
-		if err != nil {
-			panic(err)
-		}
-	}
+        g1 := &Group{}
+        err = proto.Unmarshal(out, g1)
+        if err != nil {
+            panic(err)
+        }
+    }
 }
 
 func BenchmarkJson(b *testing.B) {
-	g := &Group{}
-	for i := 0; i < 100; i++ {
-		p := &Person{
-			Id:    int32(i),
-			Name:  "测试名称",
-			Age:   int32(25 * i),
-			Money: 240000.5,
-			Car:   []string{"car1", "car2", "car3", "car4", "car5", "car7", "car6", "car21", "car22",},
-			Phone: &Person_Phone{Number: "0551-12323232", Type: "1"},
-			Sex:   Person_female,
-		}
-		g.Person = append(g.Person, p)
-	}
-	b.ResetTimer()
+    g := &Group{}
+    for i := 0; i < 100; i++ {
+        p := &Person{
+            Id:    int32(i),
+            Name:  "测试名称",
+            Age:   int32(25 * i),
+            Money: 240000.5,
+            Car:   []string{"car1", "car2", "car3", "car4", "car5", "car7", "car6", "car21", "car22",},
+            Phone: &Person_Phone{Number: "0551-12323232", Type: "1"},
+            Sex:   Person_female,
+        }
+        g.Person = append(g.Person, p)
+    }
+    b.ResetTimer()
         b.N = 1000
-	for i := 0; i < b.N; i++ {
-		out, err := json.Marshal(g)
-		if err != nil {
-			panic(err)
-		}
+    for i := 0; i < b.N; i++ {
+        out, err := json.Marshal(g)
+        if err != nil {
+            panic(err)
+        }
 
-		g1 := &Group{}
-		err = json.Unmarshal(out, g1)
-		if err != nil {
-			panic(err)
-		}
-	}
+        g1 := &Group{}
+        err = json.Unmarshal(out, g1)
+        if err != nil {
+            panic(err)
+        }
+    }
 }
 ```
 为了方便对比，指定了测试次数为1000次，测试结果如下：

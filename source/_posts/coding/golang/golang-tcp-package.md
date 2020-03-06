@@ -30,45 +30,45 @@ category: 编程开发
 package main
 
 import (
-	"log"
-	"net"
-	"strings"
+    "log"
+    "net"
+    "strings"
 )
 
 func main() {
-	listen, err := net.Listen("tcp", "127.0.0.1:8888")
-	if err != nil {
-		panic(err)
-	}
-	defer listen.Close()
+    listen, err := net.Listen("tcp", "127.0.0.1:8888")
+    if err != nil {
+        panic(err)
+    }
+    defer listen.Close()
 
-	for {
-		conn, err := listen.Accept()
-		if err != nil {
-			panic(err)
-		}
-		for {
-			data := make([]byte, 10)
+    for {
+        conn, err := listen.Accept()
+        if err != nil {
+            panic(err)
+        }
+        for {
+            data := make([]byte, 10)
 
-			_, err := conn.Read(data)
+            _, err := conn.Read(data)
 
-			if err != nil {
-				log.Printf("%s\n", err.Error())
-				break
-			}
+            if err != nil {
+                log.Printf("%s\n", err.Error())
+                break
+            }
 
-			receive := string(data)
-			log.Printf("receive msg: %s\n", receive)
+            receive := string(data)
+            log.Printf("receive msg: %s\n", receive)
 
-			send := []byte(strings.ToUpper(receive))
-			_, err = conn.Write(send)
-			if err != nil {
-				log.Printf("send msg failed, error: %s\n", err.Error())
-			}
+            send := []byte(strings.ToUpper(receive))
+            _, err = conn.Write(send)
+            if err != nil {
+                log.Printf("send msg failed, error: %s\n", err.Error())
+            }
 
-			log.Printf("send msg: %s\n", receive)
-		}
-	}
+            log.Printf("send msg: %s\n", receive)
+        }
+    }
 }
 ```
 简单说一下这段代码，有点socket编程的基础的话应该很容易理解，基本上都是Listen -> Accept -> Read这个套路。
@@ -114,32 +114,32 @@ Escape character is '^]'.
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"net"
+    "bufio"
+    "fmt"
+    "net"
 )
 
 func main() {
-	listen, err := net.Listen("tcp", "127.0.0.1:8888")
-	if err != nil {
-		panic(err)
-	}
-	defer listen.Close()
+    listen, err := net.Listen("tcp", "127.0.0.1:8888")
+    if err != nil {
+        panic(err)
+    }
+    defer listen.Close()
 
-	for {
-		conn, err := listen.Accept()
-		if err != nil {
-			panic(err)
-		}
-		reader := bufio.NewReader(conn)
-		for {
-			slice, err := reader.ReadSlice('\n')
-			if err != nil {
-				continue
-			}
-			fmt.Printf("%s", slice)
-		}
-	}
+    for {
+        conn, err := listen.Accept()
+        if err != nil {
+            panic(err)
+        }
+        reader := bufio.NewReader(conn)
+        for {
+            slice, err := reader.ReadSlice('\n')
+            if err != nil {
+                continue
+            }
+            fmt.Printf("%s", slice)
+        }
+    }
 }
 ```
 
@@ -149,43 +149,43 @@ Client这里可以直接使用telnet，也可以自己写一个，代码如下�
 package main
 
 import (
-	"log"
-	"net"
-	"strconv"
-	"testing"
-	"time"
+    "log"
+    "net"
+    "strconv"
+    "testing"
+    "time"
 )
 
 func Test(t *testing.T) {
-	conn, err := net.Dial("tcp", "127.0.0.1:8888")
-	if err != nil {
-		log.Println("dial error:", err)
-		return
-	}
-	defer conn.Close()
-	i := 0
-	for {
-		var err error
-		_, err = conn.Write([]byte(strconv.Itoa(i) + " => 77777\n"))
-		_, err = conn.Write([]byte(strconv.Itoa(i) + " => 88888\n"))
-		_, err = conn.Write([]byte(strconv.Itoa(i) + " => 555555555555555555555555555555555555555555\n"))
-		if err != nil {
-			panic(err)
-		}
-		time.Sleep(time.Second * 1)
-		_, err = conn.Write([]byte(strconv.Itoa(i) + " => 123456\n"))
-		_, err = conn.Write([]byte(strconv.Itoa(i) + " => 123456\n"))
-		if err != nil {
-			panic(err)
-		}
-		time.Sleep(time.Second * 1)
-		_, err = conn.Write([]byte(strconv.Itoa(i) + " => 9999999\n"))
-		_, err = conn.Write([]byte(strconv.Itoa(i) + " => 0000000000000000000000000000000000000000000\n"))
-		if err != nil {
-			panic(err)
-		}
-		i++
-	}
+    conn, err := net.Dial("tcp", "127.0.0.1:8888")
+    if err != nil {
+        log.Println("dial error:", err)
+        return
+    }
+    defer conn.Close()
+    i := 0
+    for {
+        var err error
+        _, err = conn.Write([]byte(strconv.Itoa(i) + " => 77777\n"))
+        _, err = conn.Write([]byte(strconv.Itoa(i) + " => 88888\n"))
+        _, err = conn.Write([]byte(strconv.Itoa(i) + " => 555555555555555555555555555555555555555555\n"))
+        if err != nil {
+            panic(err)
+        }
+        time.Sleep(time.Second * 1)
+        _, err = conn.Write([]byte(strconv.Itoa(i) + " => 123456\n"))
+        _, err = conn.Write([]byte(strconv.Itoa(i) + " => 123456\n"))
+        if err != nil {
+            panic(err)
+        }
+        time.Sleep(time.Second * 1)
+        _, err = conn.Write([]byte(strconv.Itoa(i) + " => 9999999\n"))
+        _, err = conn.Write([]byte(strconv.Itoa(i) + " => 0000000000000000000000000000000000000000000\n"))
+        if err != nil {
+            panic(err)
+        }
+        i++
+    }
 }
 ```
 如果要说缺点，这种方式主要存在2点，第一点是分隔符的选择问题，如果需要传输的消息包含分隔符，那就需要提前做转义处理。第二点就是性能问题，如果消息体特别大，每次查找分隔符的位置的话肯定会有一点消耗。
@@ -198,52 +198,52 @@ func Test(t *testing.T) {
 package main
 
 import (
-	"bufio"
-	"bytes"
-	"encoding/binary"
-	"fmt"
-	"net"
+    "bufio"
+    "bytes"
+    "encoding/binary"
+    "fmt"
+    "net"
 )
 
 func main() {
-	listen, err := net.Listen("tcp", "127.0.0.1:8888")
-	if err != nil {
-		panic(err)
-	}
-	defer listen.Close()
+    listen, err := net.Listen("tcp", "127.0.0.1:8888")
+    if err != nil {
+        panic(err)
+    }
+    defer listen.Close()
 
-	for {
-		conn, err := listen.Accept()
-		if err != nil {
-			panic(err)
-		}
-		reader := bufio.NewReader(conn)
-		for {
-			//前4个字节表示数据长度
-			peek, err := reader.Peek(4)
-			if err != nil {
-				continue
-			}
-			buffer := bytes.NewBuffer(peek)
-			//读取数据长度
-			var length int32
-			err = binary.Read(buffer, binary.BigEndian, &length)
-			if err != nil {
-				continue
-			}
-			//Buffered 返回缓存中未读取的数据的长度,如果缓存区的数据小于总长度，则意味着数据不完整
-			if int32(reader.Buffered()) < length+4 {
-				continue
-			}
-			//从缓存区读取大小为数据长度的数据
-			data := make([]byte, length+4)
-			_, err = reader.Read(data)
-			if err != nil {
-				continue
-			}
-			fmt.Printf("receive data: %s\n", data[4:])
-		}
-	}
+    for {
+        conn, err := listen.Accept()
+        if err != nil {
+            panic(err)
+        }
+        reader := bufio.NewReader(conn)
+        for {
+            //前4个字节表示数据长度
+            peek, err := reader.Peek(4)
+            if err != nil {
+                continue
+            }
+            buffer := bytes.NewBuffer(peek)
+            //读取数据长度
+            var length int32
+            err = binary.Read(buffer, binary.BigEndian, &length)
+            if err != nil {
+                continue
+            }
+            //Buffered 返回缓存中未读取的数据的长度,如果缓存区的数据小于总长度，则意味着数据不完整
+            if int32(reader.Buffered()) < length+4 {
+                continue
+            }
+            //从缓存区读取大小为数据长度的数据
+            data := make([]byte, length+4)
+            _, err = reader.Read(data)
+            if err != nil {
+                continue
+            }
+            fmt.Printf("receive data: %s\n", data[4:])
+        }
+    }
 }
 ```
 
@@ -253,51 +253,51 @@ func main() {
 package main
 
 import (
-	"bytes"
-	"encoding/binary"
-	"fmt"
-	"log"
-	"net"
-	"testing"
-	"time"
+    "bytes"
+    "encoding/binary"
+    "fmt"
+    "log"
+    "net"
+    "testing"
+    "time"
 )
 
 func Test(t *testing.T) {
-	conn, err := net.Dial("tcp", "127.0.0.1:8888")
-	if err != nil {
-		log.Println("dial error:", err)
-		return
-	}
-	defer conn.Close()
-	for {
-		data, _ := Encode("123456789")
-		_, err := conn.Write(data)
-		data, _ = Encode("888888888")
-		_, err = conn.Write(data)
-		time.Sleep(time.Second * 1)
-		data, _ = Encode("777777777")
-		_, err = conn.Write(data)
-		data, _ = Encode("123456789")
-		_, err = conn.Write(data)
-		time.Sleep(time.Second * 1)
-		fmt.Println(err)
-	}
+    conn, err := net.Dial("tcp", "127.0.0.1:8888")
+    if err != nil {
+        log.Println("dial error:", err)
+        return
+    }
+    defer conn.Close()
+    for {
+        data, _ := Encode("123456789")
+        _, err := conn.Write(data)
+        data, _ = Encode("888888888")
+        _, err = conn.Write(data)
+        time.Sleep(time.Second * 1)
+        data, _ = Encode("777777777")
+        _, err = conn.Write(data)
+        data, _ = Encode("123456789")
+        _, err = conn.Write(data)
+        time.Sleep(time.Second * 1)
+        fmt.Println(err)
+    }
 }
 func Encode(message string) ([]byte, error) {
-	// 读取消息的长度
-	var length = int32(len(message))
-	var pkg = new(bytes.Buffer)
-	// 写入消息头
-	err := binary.Write(pkg, binary.BigEndian, length)
-	if err != nil {
-		return nil, err
-	}
-	// 写入消息实体
-	err = binary.Write(pkg, binary.BigEndian, []byte(message))
-	if err != nil {
-		return nil, err
-	}
-	return pkg.Bytes(), nil
+    // 读取消息的长度
+    var length = int32(len(message))
+    var pkg = new(bytes.Buffer)
+    // 写入消息头
+    err := binary.Write(pkg, binary.BigEndian, length)
+    if err != nil {
+        return nil, err
+    }
+    // 写入消息实体
+    err = binary.Write(pkg, binary.BigEndian, []byte(message))
+    if err != nil {
+        return nil, err
+    }
+    return pkg.Bytes(), nil
 }
 ```
 

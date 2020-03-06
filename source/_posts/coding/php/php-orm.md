@@ -56,16 +56,16 @@ $users = DB::table('users')->get();
 $price = DB::table('orders')->where('finalized', 1)->avg('price');
 
 $users = DB::table('users')
-            ->join('contacts', 'users.id', '=', 'contacts.user_id')
-            ->join('orders', 'users.id', '=', 'orders.user_id')
-            ->select('users.*', 'contacts.phone', 'orders.price')
-            ->get();
+        ->join('contacts', 'users.id', '=', 'contacts.user_id')
+        ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->select('users.*', 'contacts.phone', 'orders.price')
+        ->get();
 
 $orders = DB::table('orders')
-                ->select('department', DB::raw('SUM(price) as total_sales'))
-                ->groupBy('department')
-                ->havingRaw('SUM(price) > 2500')
-                ->get();
+        ->select('department', DB::raw('SUM(price) as total_sales'))
+        ->groupBy('department')
+        ->havingRaw('SUM(price) > 2500')
+        ->get();
 ```
 还有比如说TP框架里面M方法，这些类和方法大大简化了查询操作，但本质上还是拼SQL，只不过调用的时候看起来更像面向对象，方便很多。
 
@@ -317,18 +317,18 @@ class Comment
 
 ```php
 <?php
-    /**
-     * @oneToMany(targetEntity="Comment", mappedBy="product")
-     * @var
-     */
-    protected $comments;
-    
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-    }
-    
-    ....more code
+/**
+ * @oneToMany(targetEntity="Comment", mappedBy="product")
+ * @var
+ */
+protected $comments;
+
+public function __construct()
+{
+    $this->comments = new ArrayCollection();
+}
+
+....more code
 ```
 执行 ```vendor/bin/doctrine orm:schema-tool:update --force --dump-sql```更新数据库, 执行之后你会发现comments表会多一个product_id字段, 同时还会多出一个外键索引！
 

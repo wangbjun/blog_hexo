@@ -24,7 +24,7 @@ package lib
 import "fmt"
 
 func Run() {
-	fmt.Println("something very NB")
+    fmt.Println("something very NB")
 }
 ```
 但是现实是，这个调用方不是同一个项目的，代码不在一起，是其它项目需要用，咋办呢？
@@ -56,18 +56,18 @@ type Add struct {
 }
 
 func (a *Add) Plus(request Request, response *Response) error {
-	response.Result = request.A + request.B
-	log.Printf("Add...%d + %d", request.A, request.B)
-	return nil
+    response.Result = request.A + request.B
+    log.Printf("Add...%d + %d", request.A, request.B)
+    return nil
 }
 
 type Request struct {
-	A int
-	B int
+    A int
+    B int
 }
 
 type Response struct {
-	Result int
+    Result int
 }
 ```
 
@@ -77,20 +77,20 @@ type Response struct {
 package main
 
 import (
-	. "gRPC/golang-rpc"
-	"log"
-	"net/http"
-	"net/rpc"
+    . "gRPC/golang-rpc"
+    "log"
+    "net/http"
+    "net/rpc"
 )
 
 func main() {
-	add := new(Add)
-	_ = rpc.Register(add)
-	rpc.HandleHTTP()
-	log.Println("rpc server started at port 8888")
-	if err := http.ListenAndServe(":8888", nil); err != nil {
-		panic(err)
-	}
+    add := new(Add)
+    _ = rpc.Register(add)
+    rpc.HandleHTTP()
+    log.Println("rpc server started at port 8888")
+    if err := http.ListenAndServe(":8888", nil); err != nil {
+        panic(err)
+    }
 }
 ```
 
@@ -100,26 +100,26 @@ func main() {
 package main
 
 import (
-	. "gRPC/golang-rpc"
-	"log"
-	"net/rpc"
+    . "gRPC/golang-rpc"
+    "log"
+    "net/rpc"
 )
 
 func main() {
-	dial, err := rpc.DialHTTP("tcp", ":8888")
-	if err != nil {
-		panic(err)
-	}
-	args := Request{
-		A: 1,
-		B: 2,
-	}
-	var response = Response{}
-	err = dial.Call("Add.Plus", args, &response)
-	if err != nil {
-		panic(err)
-	}
-	log.Printf("a = %d, b= %d, result = %d", args.A, args.B, response.Result)
+    dial, err := rpc.DialHTTP("tcp", ":8888")
+    if err != nil {
+        panic(err)
+    }
+    args := Request{
+        A: 1,
+        B: 2,
+    }
+    var response = Response{}
+    err = dial.Call("Add.Plus", args, &response)
+    if err != nil {
+        panic(err)
+    }
+    log.Printf("a = %d, b= %d, result = %d", args.A, args.B, response.Result)
 }
 ```
 这只是展示了Go rpc的一种用法，Go rpc的除了支持tcp之外，还可以使用json，也就是jsonrpc，其编码方式是使用json而不是默认的Gob。
@@ -169,32 +169,32 @@ gRPC相比于其它rpc语言，目前发展迅速，不仅仅支持多语言（G
 package main
 
 import (
-	"context"
-	"fmt"
-	pb "gRPC/proto"
-	"google.golang.org/grpc"
-	"log"
-	"net"
+    "context"
+    "fmt"
+    pb "gRPC/proto"
+    "google.golang.org/grpc"
+    "log"
+    "net"
 )
 
 type HelloService struct{}
 
 func (s *HelloService) Hello(ctx context.Context, r *pb.HelloRequest) (*pb.HelloResponse, error) {
-	fmt.Println("new request...")
-	return &pb.HelloResponse{Response: r.GetRequest() + " Server"}, nil
+    fmt.Println("new request...")
+    return &pb.HelloResponse{Response: r.GetRequest() + " Server"}, nil
 }
 
 const PORT = "8080"
 
 func main() {
-	server := grpc.NewServer()
-	pb.RegisterHelloServiceServer(server, &HelloService{})
+    server := grpc.NewServer()
+    pb.RegisterHelloServiceServer(server, &HelloService{})
 
-	listen, err := net.Listen("tcp", ":"+PORT)
-	if err != nil {
-		log.Fatalf("net.Listen err: %v", err)
-	}
-	_ = server.Serve(listen)
+    listen, err := net.Listen("tcp", ":"+PORT)
+    if err != nil {
+        log.Fatalf("net.Listen err: %v", err)
+    }
+    _ = server.Serve(listen)
 }
 ```
 server端的主要作用是实现服务定义的接口，然后把服务注册到rpc server里面，最后启动服务等待请求的到来，和http服务有点类似。
@@ -204,30 +204,30 @@ server端的主要作用是实现服务定义的接口，然后把服务注册�
 package main
 
 import (
-	"context"
-	pb "gRPC/proto"
-	"google.golang.org/grpc"
-	"log"
+    "context"
+    pb "gRPC/proto"
+    "google.golang.org/grpc"
+    "log"
 )
 
 const PORT = "8080"
 
 func main() {
-	conn, err := grpc.Dial(":"+PORT, grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf("grpc.Dial err: %v", err)
-	}
-	defer conn.Close()
+    conn, err := grpc.Dial(":"+PORT, grpc.WithInsecure())
+    if err != nil {
+        log.Fatalf("grpc.Dial err: %v", err)
+    }
+    defer conn.Close()
 
-	client := pb.NewHelloServiceClient(conn)
-	resp, err := client.Hello(context.Background(), &pb.HelloRequest{
-		Request: "Hello gRPC",
-	})
-	if err != nil {
-		log.Fatalf("client.Search err: %v", err)
-	}
+    client := pb.NewHelloServiceClient(conn)
+    resp, err := client.Hello(context.Background(), &pb.HelloRequest{
+        Request: "Hello gRPC",
+    })
+    if err != nil {
+        log.Fatalf("client.Search err: %v", err)
+    }
 
-	log.Printf("resp: %s", resp.GetResponse())
+    log.Printf("resp: %s", resp.GetResponse())
 }
 ```
 

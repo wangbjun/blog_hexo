@@ -21,17 +21,17 @@ Go是强类型语言，有一个单独的字符串类型 string，如果熟悉Go
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
-	str := "12ab34cd56"
+    str := "12ab34cd56"
 
-	fmt.Printf("%s\n", str[2:4]) //ab
+    fmt.Printf("%s\n", str[2:4]) //ab
 
-	fmt.Printf("%s\n", str[3:]) //b34cd56
+    fmt.Printf("%s\n", str[3:]) //b34cd56
 
-	fmt.Printf("%s\n", str[:3]) //12a
+    fmt.Printf("%s\n", str[:3]) //12a
 }
 ```
 切片的切割用法就不多说了，从0角标开始，包含开始，不包含结束。
@@ -44,19 +44,19 @@ func main() {
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
-	str := "我爱学习Go语言"
+    str := "我爱学习Go语言"
 
-	rStr := []rune(str)
+    rStr := []rune(str)
 
-	fmt.Printf("%s\n", string(rStr[2:4])) //学习
+    fmt.Printf("%s\n", string(rStr[2:4])) //学习
 
-	fmt.Printf("%s\n", string(rStr[3:])) //习Go语言
+    fmt.Printf("%s\n", string(rStr[3:])) //习Go语言
 
-	fmt.Printf("%s\n", string(rStr[:3])) //我爱学
+    fmt.Printf("%s\n", string(rStr[:3])) //我爱学
 }
 ```
 
@@ -96,19 +96,19 @@ fmt.Printf("%v\n", []rune(r))
 字符串本质上是字符数组，所以有也可以使用range遍历，而且range在迭代字符串的时候也是按字符遍历的，我们也可以利用这点分割字符串：
 ```go
 func SubString(str string, start, end int) string {
-	var n, i, k int
+    var n, i, k int
 
-	for k = range str {
-		if n == start {
-			i = k
-		}
-		if n == end {
-			break
-		}
-		n++
-	}
+    for k = range str {
+        if n == start {
+            i = k
+        }
+        if n == end {
+            break
+        }
+        n++
+    }
 
-	return str[i:k]
+    return str[i:k]
 }
 ```
 
@@ -118,26 +118,26 @@ func SubString(str string, start, end int) string {
 如果只考虑单字节我们可以很容易写出下面的代码：
 ```go
 func ReverseString(str string) string {
-	b := []byte(str)
-	for i, j := 0, len(b)-1; i < len(b)/2; i, j = i+1, j-1 {
-		b[i], b[j] = b[j], b[i]
-	}
-	return string(b)
+    b := []byte(str)
+    for i, j := 0, len(b)-1; i < len(b)/2; i, j = i+1, j-1 {
+        b[i], b[j] = b[j], b[i]
+    }
+    return string(b)
 }
 ```
 
 如果考虑到中文等多字节字符可以参考下面这种方式：
 ```go
 func ReverseRuneString(s string) string {
-	var start, size, end int
-	buf := make([]byte, len(s))
-	for end < len(s) {
-		_, size = utf8.DecodeRuneInString(s[start:])
-		end = start + size
-		copy(buf[len(buf)-end:], s[start:end])
-		start = end
-	}
-	return string(buf)
+    var start, size, end int
+    buf := make([]byte, len(s))
+    for end < len(s) {
+        _, size = utf8.DecodeRuneInString(s[start:])
+        end = start + size
+        copy(buf[len(buf)-end:], s[start:end])
+        start = end
+    }
+    return string(buf)
 }
 ```
 

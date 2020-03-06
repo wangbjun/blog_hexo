@@ -16,22 +16,22 @@ Golang被诟病非常多的一点就是缺少强大方便的异常处理机制�
 ```go
 package main
 import (
-	"errors"
-	"fmt"
+    "errors"
+    "fmt"
 )
 
 func main() {
-	s, err := say()
-	if err != nil {
-		fmt.Printf("%s\n", err.Error())
-	} else {
-		fmt.Printf("%s\n", s)
-	}
+    s, err := say()
+    if err != nil {
+        fmt.Printf("%s\n", err.Error())
+    } else {
+        fmt.Printf("%s\n", s)
+    }
 }
 
 func say() (string, error) {
-	// do something
-	return "", errors.New("something error")
+    // do something
+    return "", errors.New("something error")
 }
 ```
 这种写法最大的问题就是每一个error都需要判断处理，非常繁琐，如果使用try catch机制，我们就可以统一针对多个函数调用可能产生的错误做处理，节省一点代码和时间。不过咱们今天不是来讨论Go的异常错误处理机制的，这里只是简单说一下。
@@ -44,14 +44,14 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Printf("%d\n", cal(1,2))
-	fmt.Printf("%d\n", cal(5,2))
-	fmt.Printf("%d\n", cal(5,0)) //panic: runtime error: integer divide by zero 
-	fmt.Printf("%d\n", cal(9,5))
+    fmt.Printf("%d\n", cal(1,2))
+    fmt.Printf("%d\n", cal(5,2))
+    fmt.Printf("%d\n", cal(5,0)) //panic: runtime error: integer divide by zero 
+    fmt.Printf("%d\n", cal(9,5))
 }
 
 func cal(a, b int) int {
-	return a / b
+    return a / b
 }
 ```
 在执行第三个计算的时候会发生一个panic，这种错误会导致程序退出，下面的代码的就无法执行了。当然你可以说这种错误理论上是可以预测的，我们只要在cal函数内部做好处理就行了。
@@ -66,19 +66,19 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Printf("%d\n", cal(1, 2))
-	fmt.Printf("%d\n", cal(5, 2))
-	fmt.Printf("%d\n", cal(5, 0))
-	fmt.Printf("%d\n", cal(9, 2))
+    fmt.Printf("%d\n", cal(1, 2))
+    fmt.Printf("%d\n", cal(5, 2))
+    fmt.Printf("%d\n", cal(5, 0))
+    fmt.Printf("%d\n", cal(9, 2))
 }
 
 func cal(a, b int) int {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Printf("%s\n", err)
-		}
-	}()
-	return a / b
+    defer func() {
+        if err := recover(); err != nil {
+            fmt.Printf("%s\n", err)
+        }
+    }()
+    return a / b
 }
 ```
 首先，大家得理解defer的作用，简单说defer就类似于面向对象里面的析构函数，在这个函数终止的时候会执行，即使是panic导致的终止。
@@ -93,26 +93,26 @@ func cal(a, b int) int {
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
-	requests := []int{12, 2, 3, 41, 5, 6, 1, 12, 3, 4, 2, 31}
-	for n := range requests {
-		go run(n) //开启多个协程
-	}
+    requests := []int{12, 2, 3, 41, 5, 6, 1, 12, 3, 4, 2, 31}
+    for n := range requests {
+        go run(n) //开启多个协程
+    }
 
-	for {
-		select {}
-	}
+    for {
+        select {}
+    }
 }
 
 func run(num int) {
     //模拟请求错误
-	if num%5 == 0 {
-		panic("请求出错")
-	}
-	fmt.Printf("%d\n", num)
+    if num%5 == 0 {
+        panic("请求出错")
+    }
+    fmt.Printf("%d\n", num)
 }
 ```
 上面这段代码无法完整执行下去，因为其中某一个协程必然会发生panic，从而导致整个应用挂掉，其它协程也停止执行。
@@ -120,37 +120,37 @@ func run(num int) {
 解决方法和上面一样，我们只需要在run函数里面加入defer recover，整个程序就会非常健壮，即使发生panic，也会完整的执行下去。
 ```go
 func run(num int) {
-	defer func() {
-		if err := recover();err != nil {
-			fmt.Printf("%s\n", err)
-		}
-	}()
-	if num%5 == 0 {
-		panic("请求出错")
-	}
-	fmt.Printf("%d\n", num)
+    defer func() {
+        if err := recover();err != nil {
+            fmt.Printf("%s\n", err)
+        }
+    }()
+    if num%5 == 0 {
+        panic("请求出错")
+    }
+    fmt.Printf("%d\n", num)
 }
 ```
 
 上面的代码只是演示，真正的坑是：如果你在run函数里面又启动了其它协程，这个协程发生的panic是无法被recover的，还是会导致整个进程挂掉,我们改造了一下上面的例子：
 ```go
 func run(num int) {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Printf("%s\n", err)
-		}
-	}()
-	if num%5 == 0 {
-		panic("请求出错")
-	}
-	go myPrint(num)
+    defer func() {
+        if err := recover(); err != nil {
+            fmt.Printf("%s\n", err)
+        }
+    }()
+    if num%5 == 0 {
+        panic("请求出错")
+    }
+    go myPrint(num)
 }
 
 func myPrint(num int) {
-	if num%4 == 0 {
-		panic("请求又出错了")
-	}
-	fmt.Printf("%d\n", num)
+    if num%4 == 0 {
+        panic("请求又出错了")
+    }
+    fmt.Printf("%d\n", num)
 }
 ```
 我在run函数里面又通过协程的方式调用了另一个函数，而这个函数也会发生panic，你会发现整个程序也挂了，即使run函数有recover也没有任何作用，这意味着我们还需要在myPrint函数里面加入recover。但是如果你不使用协程的方式调用myPrint函数，直接调用的话还是可以捕获recover的。

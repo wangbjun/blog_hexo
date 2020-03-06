@@ -132,9 +132,9 @@ class Elephant implements Fridgeable
 ...
 public function store(Fridgeable $fridgeable)
 {
-        $this->open();
-        $fridgeable->intoFridge();
-        $this->close();
+    $this->open();
+    $fridgeable->intoFridge();
+    $this->close();
 }
 ...
 ```
