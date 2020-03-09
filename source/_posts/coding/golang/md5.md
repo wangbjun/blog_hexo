@@ -1,7 +1,9 @@
 ---
-title: Golang里面MD5的写法和性能
+title: Golang计算MD5的写法和性能
 date: 2020-03-05 21:10:00
-tags: Golang
+tags: 
+- Golang
+- MD5
 category: 编程开发
 ---
 用过PHP的童鞋知道在PHP里面md5很简单，是一个内置函数，可以直接调用：
