@@ -1,7 +1,7 @@
 ---
 title: PHP匿名函数和闭包
 date: 2018-04-05 19:00:03
-category: 编程开发
+category: PHP
 tags: 
     - PHP
     - Closure

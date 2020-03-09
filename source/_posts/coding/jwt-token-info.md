@@ -2,7 +2,7 @@
 title: Token 和 JWT Token
 date: 2019-01-03 21:05:45
 tags: JWT
-category: 编程开发
+category: Coding
 ---
 
 ## 1.Token的用途

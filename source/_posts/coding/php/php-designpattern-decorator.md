@@ -1,7 +1,7 @@
 ---
 title: PHP设计模式之装饰器模式
 date: 2016-11-21 11:20:08
-category: 编程开发
+category: PHP
 tags: 
     - PHP
 ---

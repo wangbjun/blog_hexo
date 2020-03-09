@@ -1,7 +1,7 @@
 ---
 title: PHP设计模式之简单工厂模式
 date: 2016-09-05 15:00:00
-category: 编程开发
+category: PHP
 tags: 
     - PHP
 ---

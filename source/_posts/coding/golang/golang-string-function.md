@@ -2,7 +2,7 @@
 title: Golang字符串处理函数浅析
 date: 2019-02-12 20:15:43
 tags: Golang
-category: 编程开发
+category: Golang
 ---
 
 很多从PHP转Go的小伙伴经常会怀恋PHP丰富的字符串函数，Go的标准库针对字符串的操作函数虽然不少但是还是不够丰富，很多时候还得自己造，下面我就结合PHP里面字符串的操作函数来说说Go里面怎么实现。

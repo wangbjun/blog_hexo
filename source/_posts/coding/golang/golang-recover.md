@@ -2,7 +2,7 @@
 title: 浅谈Golang的recover异常处理机制
 date: 2019-11-10 20:22:04
 tags: Golang
-category: 编程开发
+category: Golang
 ---
 
 ## 1.error

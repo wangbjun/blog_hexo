@@ -1,7 +1,7 @@
 ---
 title: PHP数据结构之双向链表
 date: 2015-12-01 11:01:13
-category: 编程开发
+category: PHP
 tags: 
     - PHP
 ---

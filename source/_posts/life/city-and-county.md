@@ -2,7 +2,7 @@
 title: 谈谈城市化和农村现状
 date: 2020-02-07 12:57:19
 tags: Life
-category: 生活
+category: Life
 keywords: 城市化,农村
 ---
 

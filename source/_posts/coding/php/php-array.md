@@ -1,7 +1,7 @@
 ---
 title: PHP数组解析和常见操作
 date: 2016-02-05 19:00:03
-category: 编程开发
+category: PHP
 tags: 
     - PHP
     - 数组

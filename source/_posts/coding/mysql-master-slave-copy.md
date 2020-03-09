@@ -1,7 +1,7 @@
 ---
 title: Mysql主从复制实践
 date: 2018-09-05 19:10:03
-category: 编程开发
+category: Coding
 tags: 
     - MySQL
     - 数据库

@@ -2,7 +2,7 @@
 title: Golang处理TCP“粘包”问题
 date: 2019-05-10 12:05:45
 tags: Golang
-category: 编程开发
+category: Golang
 ---
 
 ## 1.什么是粘包？

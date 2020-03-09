@@ -1,7 +1,7 @@
 ---
 title: PHP多进程编程应用
 date: 2017-06-09 15:10:03
-category: 编程开发
+category: PHP
 tags: 
     - PHP
 ---

@@ -2,7 +2,7 @@
 title: Golang的依赖注入简介
 date: 2019-05-15 21:13:49
 tags: Golang
-category: 编程开发
+category: Golang
 ---
 
 DI - Dependency Injection，即“依赖注入”，是指组件之间依赖关系由容器在运行期决定，与此同时还有一个叫作IOC的词汇，IOC即控制反转。

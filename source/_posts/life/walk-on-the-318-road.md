@@ -2,7 +2,7 @@
 title: 那些年，318徒步搭车之旅（一）
 date: 2020-02-12 15:40:07
 tags: Life
-category: 生活
+category: Life
 keywords: 318国道,旅游,徒步
 ---
 

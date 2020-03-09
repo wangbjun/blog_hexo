@@ -2,7 +2,7 @@
 title: Go面向对象写法
 date: 2019-04-19 22:05:43
 tags: Golang
-category: 编程开发
+category: Golang
 ---
 
 Go并不是一个类似于Java、C++，或PHP这样内置面向对象语法的操作的语言，在Go里面名义上是没有类（class）这个概念的，但是这并不代表Go不能面向对象，毕竟面向对象只是一种设计思想！

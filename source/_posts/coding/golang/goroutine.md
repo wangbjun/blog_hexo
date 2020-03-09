@@ -2,7 +2,7 @@
 title: 浅谈Golang协程
 date: 2018-12-10 12:05:45
 tags: Golang
-category: 编程开发
+category: Golang
 ---
 
 ## 前言

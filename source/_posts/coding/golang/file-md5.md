@@ -4,7 +4,7 @@ date: 2020-03-07 10:42:22
 tags: 
 - Golang
 - MD5
-category: 编程开发
+category: Golang
 ---
 前面这篇文章[<Golang里面MD5的写法和性能>](https://wangbjun.site/2020/coding/golang/md5.html)介绍了如何计算字符串的md5，下面我们来说说如何计算文件的md5。
 

@@ -2,7 +2,7 @@
 title: Golang测试用例编写
 date: 2020-02-10 18:15:00
 tags: Golang
-category: 编程开发
+category: Golang
 keywords: golang,单元测试，功能测试
 ---
 

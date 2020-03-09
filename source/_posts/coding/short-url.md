@@ -2,7 +2,7 @@
 title: 短网址原理和实现
 date: 2019-07-09 19:02:46
 tags: 短网址
-category: 编程开发
+category: Coding
 ---
 
 ## 1.背景介绍

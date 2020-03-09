@@ -2,7 +2,7 @@
 title: JWT Token的刷新和作废
 date: 2019-01-21 15:05:45
 tags: JWT
-category: 编程开发
+category: Coding
 ---
 
 之前一篇简单介绍了下JWT的用法,涉及到token的签发和验证。有人说JWT不适合用于替换传统的 **session+cookies** 机制用于Web应用的用户登录状态维护，很大原因就是这块问题。

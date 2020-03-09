@@ -2,7 +2,7 @@
 title: Web开发中用到的Cache
 date: 2019-02-01 12:02:46
 tags: Cache
-category: 编程开发
+category: Coding
 ---
 
 ## 1.什么是Cache？

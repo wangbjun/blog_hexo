@@ -1,7 +1,7 @@
 ---
 title: PHP开发中ORM的应用
 date: 2017-05-06 19:10:03
-category: 编程开发
+category: PHP
 tags: 
     - PHP
     - ORM

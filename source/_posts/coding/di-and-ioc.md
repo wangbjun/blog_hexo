@@ -2,7 +2,7 @@
 title: PHP依赖注入和控制反转
 date: 2018-07-13 22:15:05
 tags: PHP
-category: 编程开发
+category: Coding
 ---
 
 这2个其实都算得上是一种设计模式或者说是一种软件设计思想，目的都是为了增加软件可维护性和扩展性，比如在Java Web框架SpringMVC 和PHP Web框架laravel里面都有应用。

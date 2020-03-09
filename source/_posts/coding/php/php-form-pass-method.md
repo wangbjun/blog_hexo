@@ -1,7 +1,7 @@
 ---
 title: 浅谈PHP前后端传参常见的几种方式
 date: 2017-09-05 15:00:00
-category: 编程开发
+category: PHP
 tags: 
     - PHP
 ---

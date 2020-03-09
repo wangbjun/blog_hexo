@@ -2,7 +2,7 @@
 title: GRPC入门和实践
 date: 2019-08-28 23:15:43
 tags: Grpc
-category: 编程开发
+category: Golang
 ---
 
 # gPRC
