@@ -109,8 +109,8 @@ deploy:
     repository: git@github.com:wangbjun/wangbjun.github.io.git
     branch: master
   - type: sftp
-    host: 123.207.144.90
-    user: ubuntu
+    host: 47.94.21.57
+    user: root
     pass:
     remotePath: /opt/blog
     port: 22
