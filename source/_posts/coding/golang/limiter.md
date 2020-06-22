@@ -163,3 +163,204 @@ e = {1592323450 0} //即将新入列
 
 这种实现方法区块划分的越多越精确,但是到底该设置多少个格子才足够精确呢？而且这种方式依然没有解决突发流量瞬间占用的情况，所以又延伸出了2种流行的平滑限流算法分别是```漏桶算法```和```令牌桶算法```。
 
+## 3.漏桶算法
+所谓漏桶算法就是有一个固定大小的桶，进水速率不确定，但是出水速率固定，这里所谓的进水指的就是请求，而出水则是处理请求。
+漏桶算法有以下特点：
+
+* 漏桶具有固定容量，出水速率是固定常量（流出请求）
+* 如果桶是空的，则不需流出水滴
+* 可以以任意速率流入水滴到漏桶（流入请求）
+* 如果流入水滴超出了桶的容量，则流入的水滴溢出（新请求被拒绝）
+
+漏桶算法实现的重点在于有一个桶的容量、速率、当前水量、一个动态的时间戳，我们通过每次计算当前时间和上次时间的间隔*速率得到一个漏去的水量，把当前水量减去这个值就是当前剩余水量。
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    var capacity int64 = 100 // 桶容量
+    var rate = 10            // 出水速度，每秒10个
+    var water int64 = 0      // 当前水量
+    var lastTime = time.Now().Unix()
+
+    for {
+        now := time.Now().Unix()
+        di := water - (now-lastTime)*int64(rate) //计算过去的时间内产生的水量
+        if di > 0 {
+            water = di
+        } else {
+            water = 0
+        }
+        lastTime = now
+        if water < capacity {
+            water++
+            doSomething()
+        } else {
+            fmt.Println("reach limit")
+            time.Sleep(500 * time.Millisecond)
+        }
+    }
+}
+
+func doSomething() {
+    fmt.Printf("do something \n")
+}
+```
+这个算法依然有一个缺点：就是无法应对突发流量，所以下面有了令牌桶算法。
+
+## 4.令牌桶算法
+令牌桶算法和漏桶算法的方向刚好是相反的，我们有一个固定的桶，桶里存放着令牌（token）。一开始桶是空的，系统按固定的时间（rate）往桶里添加令牌，直到桶里的令牌数满，多余的请求会被丢弃。
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    var rate = 10        // 令牌生成速度，每秒10个
+    var tokens int64 = 0 // 当前令牌数量
+    var timeStamp = time.Now().Unix()
+
+    for {
+        now := time.Now().Unix()
+        di := tokens + (now-timeStamp)*int64(rate) //计算过去的时间段产生的令牌数
+        if di > 0 {
+            tokens = di
+        } else {
+            tokens = 0
+        }
+        timeStamp = now
+        if tokens < 1 {
+            fmt.Println("reach limit")
+            time.Sleep(500 * time.Millisecond)
+        } else {
+            tokens--
+            doSomething()
+        }
+    }
+}
+
+func doSomething() {
+    fmt.Printf("do something \n")
+}
+```
+说到这个算法，在Go里面我们还可以使用chanel结合生产者消费者模式轻松实现，代码如下：
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    var ch = make(chan int64, 100)
+    go func() {
+        // 开启协程，每隔100ms往管道里面放一个数，也就是实现每秒10s的限速效果
+        var ticker = time.NewTicker(100 * time.Millisecond)
+        for {
+            select {
+            case <-ticker.C:
+                ch <- 1
+            }
+        }
+    }()
+    for {
+        <-ch    //利用管道的阻塞特性
+        doSomething()
+    }
+}
+
+func doSomething() {
+    fmt.Printf(" %s :do something \n", time.Now().Format("2006-01-02 15:04:05"))
+}
+```
+
+## 5.Go WaitGroup 限速
+在日常开发中，很多时候我们对限速要求并不是十分精准，比如说我们要用协程并发调一个接口100次，一个接口耗时3s，但是这个接口的并发能力不强，如果不做限制很可能把接口打垮，假设要求qps低于10，也就说最多每秒10个请求，利用Go的协程可以轻松实现。
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+    "time"
+)
+
+func main() {
+    var wg = sync.WaitGroup{}
+    var count = 0
+    for i := 0; i < 100; i++ {
+        wg.Add(1)
+        go doSomething(&wg)
+        count++
+        if count > 10 {
+            wg.Wait()
+            count = 0
+        }
+    }
+}
+
+func doSomething(wg *sync.WaitGroup) {
+    defer wg.Done()
+    time.Sleep(time.Second * 3)
+    fmt.Printf(" %s :do something \n", time.Now().Format("2006-01-02 15:04:05"))
+}
+```
+
+## 6.Go“标准库”的限速包
+说是Go标准库，其实严格来说并不是，这是```golang.org/x```下面的包，一般被认为是Go的一些正在开发或者验证中的包，我觉得有点类似开发版的味道，这些包需要手动安装，并不是直接可以用的。
+```
+These packages are part of the Go Project but outside the main Go tree. They are developed under looser compatibility requirements than the Go core.
+```
+这里面的包还是挺多的，有些非常实用，但是在国内用有个小问题，直接go get拉不下来，需要设置一下goproxy，具体就不细说了。
+
+```go
+go get golang.org/x/time/rate
+```
+这个包使用的限速算法就是令牌桶算法，示例如下：
+
+```go
+package main
+
+import (
+    "fmt"
+    "golang.org/x/time/rate"
+    "time"
+)
+
+func main() {
+    limiter := rate.NewLimiter(5, 10)
+    for {
+        if limiter.Allow() {
+            fmt.Printf("%s: allow\n", time.Now().Format("2006-01-02 15:04:05"))
+        }
+    }
+}
+```
+
+**NewLimiter**有2个参数，第一个是rate速率，单位时间内的产生的令牌数，第二个则是桶的容量，然后使用**Allow()**，这个函数的意思如下：
+
+```go
+// Allow is shorthand for AllowN(time.Now(), 1).
+func (lim *Limiter) Allow() bool {
+    return lim.AllowN(time.Now(), 1)
+}
+
+// AllowN reports whether n events may happen at time now.
+// Use this method if you intend to drop / skip events that exceed the rate limit.
+// Otherwise use Reserve or Wait.
+func (lim *Limiter) AllowN(now time.Time, n int) bool {
+    return lim.reserveN(now, n, 0).ok
+}
+```
+啥意思呢？截止到某一时刻，目前桶中数目是否至少为n个，满足则返回 true，同时从桶中消费n个token，运行结果是第一秒打印产生15个记录，然后是每秒5个记录，有人说为什么第一秒15个，那是因为桶里面初始化的时候有10个，也就是第二个参数的作用。
+
+最后说几句，在实际应用中，对于Web应用的限速一般都在网关处理，比如nginx就有限速模块可以使用，包括按连接数限速(ngx_http_limit_conn_module)、按请求速率限速(ngx_http_limit_req_module)，基本上可以满足需求。
