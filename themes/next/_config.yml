@@ -415,7 +415,7 @@ vkontakte_api:
   num_of_posts: 10
 
 # Star rating support to each article.
-# To get your ID visit https://widgetpack.com
+# To get your ID visit https://widgetpack.comtrue
 rating:
   enable: false
   id:     #<app_id>
@@ -456,7 +456,7 @@ busuanzi_count:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: true
+baidu_push: false
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -540,7 +540,7 @@ tabs:
 use_motion: false
 
 # Fancybox
-fancybox: false
+fancybox: true
 
 # Progress bar in the top during page loading.
 pace: false
