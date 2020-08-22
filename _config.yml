@@ -105,9 +105,9 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  - type: git
-    repository: git@github.com:wangbjun/wangbjun.github.io.git
-    branch: master
+#  - type: git
+#    repository: git@github.com:wangbjun/wangbjun.github.io.git
+#    branch: master
   - type: sftp
     host: 47.94.21.57
     user: root
@@ -115,4 +115,4 @@ deploy:
     remotePath: /opt/blog
     port: 22
     privateKey: /home/jwang/.ssh/id_rsa
-    concurrency: 50
+    concurrency: 10
