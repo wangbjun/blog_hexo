@@ -66,7 +66,7 @@ func main() {
 ```go
 var globalRand = New(&lockedSource{src: NewSource(1).(*rngSource)})
 ```
-为了每次运行产生不同的结果，我们需要使用一个随机送当种子来初始化源，最常见的做法就是使用当前时间戳：
+为了每次运行产生不同的结果，我们需要使用一个随机数当种子来初始化源，最常见的做法就是使用当前时间戳：
 ```go
 rand.Seed(time.Now().UnixNano())
 ```
@@ -84,7 +84,7 @@ func randNew() {
 ```
 但是请注意这个rand并不是并发安全的，如果在并发环境下使用，需要自行加锁！
 
-## 2、Intn()源码分析
+## 2.源码分析
 下面咱以一个最常用的Intn函数为例分析其实现过程：
 ```go
 // Intn returns, as an int, a non-negative pseudo-random number in [0,n)
