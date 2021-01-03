@@ -37,7 +37,7 @@ func main() {
 
 网上借张http协议报文的图看一下：
 
-<img src="/images/2020-06-07_16-30.png" />
+<img src="/images/2020/2020-06-07_16-30.png" />
 
 实际上，协议内容非常复杂，对于每一个字段代表的意思和应该出现的位置都有规定，有人可能说，我拿chrome F12打开控制台看到和这个不一样啊，那是因为浏览器把请求解析了一行行显示出来方便咱调试而已。
 
@@ -78,7 +78,7 @@ func (mux *ServeMux) HandleFunc(pattern string, handler func(ResponseWriter, *Re
 ```
 这里的核心是```ServeMux```这个结构体，按照注释的介绍，这个是一个http server的多路复用分发器，顾名思义，它是用来处理分发请求的，下面是它实现的一些方法：
 
-<img src="/images/2020-06-07_19-01.png" />
+<img src="/images/2020/2020-06-07_19-01.png" />
 
 这个结构体有4个成员属性，其中mu是一个读写互斥锁；m是一个map，其key是一个string（实际上也是路由），value是一个muxEntry；这个muxEntry则是代表了handler和pattern，其中pattern就是咱说的路由，又叫请求path。
 
@@ -455,7 +455,7 @@ func parseRequestLine(line string) (method, requestURI, proto string, ok bool) {
 ```
 当然其中还有一个非常重要的操作，那就是调用我们之前注册的handler，这个操作是在解析完http请求之后的地方，然后后面就是一些收尾操作。
 
-<img src="/images/2020-06-07_21-46.png" />
+<img src="/images/2020/2020-06-07_21-46.png" />
 
 ## 3.总结
 相信很多人看完之后还是一脸懵逼，我也差不多，虽然说看上去都是合情合理，但是很多细节并没有深入去研究，虽然说http协议是一个文本协议，但是其解析处理也绝非易事。对于很多使用Go做Web开发的人来说，有必要简单了解一下，有助于了解网络请求的处理过程，加深对协议的理解。
