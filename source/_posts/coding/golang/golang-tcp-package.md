@@ -78,7 +78,7 @@ func main() {
 ### 二、Client端：
 
 这个服务的功能特别简单，客户端输入什么我就返回什么，客户端的话，这里我使用telnet来演示：
-```shell script
+```shell
 jwang@jwang:~$ telnet 127.0.0.1 8888
 Trying 127.0.0.1...
 Connected to 127.0.0.1.

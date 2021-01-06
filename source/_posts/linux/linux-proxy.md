@@ -32,23 +32,23 @@ Linux下的代理设置也在网络设置里面，但是不同的桌面环境下
 
 ## 2.命令行终端
 在Linux下，命令行默认是不走系统代理设置的，如果想走代理必须单独设置，最简单的方法是通过export导入环境变量，比如设置http代理可以通过下面这种方式设置：
-```shell script
+```shell
 export http_proxy=127.0.0.1:1081
 export https_proxy=127.0.0.1:1081
 ```
 如果是socks代理可以这样：
-```shell script
+```shell
 export socks_proxy=127.0.0.1:1080
 ```
 如果嫌麻烦，可以使用all_proxy同时设置所有代理：
-```shell script
+```shell
 export ALL_PROXY=socks5://127.0.0.1:1080
 ```
 
 需要提醒一点的是，使用export设置只在当前终端有效，如果你想保持这个设置，可以把命令写到```/etc/profile```或者```~/.profile```等环境设置脚本里面来实现永久效果。
 
 设置完这些代理之后，一般常用命令，比如curl，wget是会走这个环境变量的，但是还有很多命令是不走的，特别是一些复杂的应用，它们也有自己的代理设置选项，举个例子，更新系统使用的apt命令，它就需要更改配置文件：
-```shell script
+```shell
 sudo vim /etc/apt/apt.conf
 
 在里面加入下列配置
@@ -60,7 +60,7 @@ Acquire {
 ```
 
 还有命令，比如Git，也需要单独设置：
-```shell script
+```shell
 git config --global http.proxy 127.0.0.1:1081
 ```
 
