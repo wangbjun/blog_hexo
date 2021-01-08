@@ -1,8 +1,8 @@
 {% if page.comments && theme.gitalk.enable %}
 
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <link rel="stylesheet" href="https://unpkg.zhimg.com/gitalk/dist/gitalk.css">
 
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://unpkg.zhimg.com/gitalk/dist/gitalk.min.js"></script>
 
    <script type="text/javascript">
         var gitalk = new Gitalk({
